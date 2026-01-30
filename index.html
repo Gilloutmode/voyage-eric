@@ -19,6 +19,7 @@
             --dark: #0F172A;
             --white: #FFFFFF;
             --gray: #64748B;
+            --tesla-red: #E31937;
             --glass-bg: rgba(255, 255, 255, 0.9);
             --glass-blur: blur(20px);
         }
@@ -70,6 +71,27 @@
             letter-spacing: 0.1em;
         }
         .nav-link:hover { color: var(--gold); }
+
+        /* Print Button Header */
+        .print-header-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--gold);
+            color: var(--dark);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .print-header-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
 
         /* Hero */
         .hero {
@@ -140,6 +162,32 @@
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
         }
 
+        /* Floating Print Button */
+        .print-floating-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--dark);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s;
+        }
+        .print-floating-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
         /* Quick Navigation */
         .quick-nav {
             background: var(--dark);
@@ -170,6 +218,21 @@
             background: var(--gold);
             color: var(--dark);
             border-color: var(--gold);
+        }
+
+        /* MOBILE: Désactiver sticky pour header et quick-nav */
+        @media (max-width: 768px) {
+            .header {
+                position: relative;
+            }
+            .quick-nav {
+                position: relative;
+                top: 0;
+                display: none; /* Masquer complètement sur mobile */
+            }
+            html {
+                scroll-padding-top: 0;
+            }
         }
 
         /* Day Section */
@@ -399,8 +462,119 @@
         }
         .detail-content strong { color: var(--dark); }
 
-        /* Print Button */
-        .day-print-btn {
+        /* Tesla Supercharger Box */
+        .tesla-box {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            position: relative;
+            border: 1px solid rgba(227, 25, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .tesla-box::before {
+            content: '⚡';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            font-size: 1.5rem;
+            background: var(--tesla-red);
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+        .tesla-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .tesla-logo {
+            width: 32px;
+            height: 32px;
+            background: var(--tesla-red);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 0.75rem;
+        }
+        .tesla-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--tesla-red);
+        }
+        .tesla-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        .tesla-address {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 0.75rem;
+        }
+        .tesla-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .tesla-pill {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 0.3rem 0.7rem;
+            background: rgba(227, 25, 55, 0.15);
+            color: #ff6b7a;
+            border: 1px solid rgba(227, 25, 55, 0.3);
+            border-radius: 20px;
+        }
+        .tesla-note {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
+        /* Photo Spot Box */
+        .photo-box {
+            background: linear-gradient(135deg, #fef3e2 0%, #fde8c8 100%);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        .photo-box::before {
+            content: '📸';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            font-size: 1.5rem;
+            background: #fef3e2;
+            padding: 0 8px;
+            border-radius: 50%;
+        }
+        .photo-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #d97706;
+            margin-bottom: 0.5rem;
+        }
+        .photo-text {
+            font-size: 1rem;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        /* Print Day Button */
+        .print-day-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -413,9 +587,9 @@
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
-        .day-print-btn:hover {
+        .print-day-btn:hover {
             background: var(--gold);
             color: var(--dark);
         }
@@ -434,6 +608,7 @@
         }
         @media (max-width: 768px) {
             .footer-content { grid-template-columns: 1fr; }
+            .print-floating-btn { display: none; }
         }
         .footer-logo {
             font-family: 'Playfair Display', serif;
@@ -472,7 +647,9 @@
 
         /* Print Styles */
         @media print {
-            .header, .quick-nav, .day-print-btn, .footer, .hero { display: none !important; }
+            .header, .quick-nav, .print-day-btn, .print-header-btn, .print-floating-btn, .footer { 
+                display: none !important; 
+            }
             body { background: white !important; }
             .day-section { 
                 page-break-after: always; 
@@ -482,16 +659,18 @@
             .day-section:last-of-type { page-break-after: avoid; }
             .day-header { grid-template-columns: 1fr 2fr !important; gap: 20px !important; }
             .day-image img { height: 200px !important; }
-            .story-box, .anecdote-box, .secret-box, .detail-card {
+            .story-box, .anecdote-box, .secret-box, .detail-card, .tesla-box, .photo-box {
                 box-shadow: none !important;
                 border: 1px solid #ddd !important;
+                page-break-inside: avoid;
             }
+            .tesla-box {
+                background: #f8f8f8 !important;
+                border: 1px solid #ddd !important;
+            }
+            .tesla-title, .tesla-address { color: #333 !important; }
             * { animation: none !important; transition: none !important; }
         }
-
-        /* Print Single Day Styles (injected) */
-        .print-single-mode .day-section { display: none !important; }
-        .print-single-mode .day-section.print-active { display: block !important; }
     </style>
 </head>
 <body>
@@ -501,12 +680,20 @@
             <a href="#" class="logo">Israël<span>Elite</span></a>
             <nav class="nav">
                 <a href="#jour1" class="nav-link">Itinéraire</a>
-                <a href="#footer" class="nav-link">Contact</a>
+                <a href="#hero" class="nav-link">Accueil</a>
+                <button onclick="window.print()" class="print-header-btn">
+                    🖨️ Imprimer
+                </button>
             </nav>
         </div>
     </header>
 
-    <!-- Hero -->
+    <!-- Floating Print Button -->
+    <button class="print-floating-btn" onclick="window.print()">
+        🖨️ Imprimer / PDF
+    </button>
+
+    <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-bg">
             <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=1920&q=80" alt="Tel Aviv">
@@ -515,33 +702,33 @@
         <div class="hero-content">
             <p class="hero-label">Voyage Privé sur Mesure</p>
             <h1 class="hero-title">L'Israël Authentique</h1>
-            <p class="hero-subtitle">15 jours d'exception — entre luxe, histoire millénaire et découvertes secrètes</p>
-            <a href="#jour1" class="hero-cta">Découvrir l'itinéraire →</a>
+            <p class="hero-subtitle">15 jours d'exception, entre luxe, histoire et découvertes</p>
+            <a href="#jour1" class="hero-cta">Découvrir l'itinéraire</a>
         </div>
     </section>
 
-    <!-- Quick Nav -->
+    <!-- Quick Navigation -->
     <nav class="quick-nav">
         <div class="container">
             <div class="quick-nav-inner">
                 <a href="#jour1" class="quick-nav-btn">J1 Tel Aviv</a>
                 <a href="#jour2" class="quick-nav-btn">J2 Césarée</a>
-                <a href="#jour3" class="quick-nav-btn">J3 Haïfa & Akko</a>
+                <a href="#jour3" class="quick-nav-btn">J3 Haïfa</a>
                 <a href="#jour4" class="quick-nav-btn">J4 Tibériade</a>
                 <a href="#jour5" class="quick-nav-btn">J5-6 Jérusalem</a>
-                <a href="#jour7" class="quick-nav-btn">J7 Mer Morte</a>
+                <a href="#jour7" class="quick-nav-btn">J7 Massada</a>
                 <a href="#jour8" class="quick-nav-btn">J8-9 Eilat</a>
-                <a href="#jour10" class="quick-nav-btn">J10 Mitzpe Ramon</a>
-                <a href="#jour11" class="quick-nav-btn">J11-14 The Setai</a>
+                <a href="#jour10" class="quick-nav-btn">J10 Ramon</a>
+                <a href="#jour11" class="quick-nav-btn">J11-14 Setai</a>
             </div>
         </div>
     </nav>
 
-    <!-- ============================================ -->
-    <!-- JOUR 1 - TEL AVIV / NEVE TZEDEK -->
-    <!-- ============================================ -->
+    <!-- JOUR 1 - TEL AVIV -->
     <section class="day-section" id="jour1">
         <div class="container">
+            <button onclick="printDay('jour1')" class="print-day-btn">🖨️ Imprimer cette fiche</button>
+            
             <div class="day-header">
                 <div class="day-image">
                     <span class="day-badge">Jour 1</span>
@@ -550,29 +737,8 @@
                 <div class="day-info">
                     <p class="day-number">Arrivée & Installation</p>
                     <h2 class="day-title">Tel Aviv — <span>Neve Tzedek</span></h2>
-                    <p class="day-intro">Votre voyage commence dans le quartier le plus ancien de Tel Aviv, fondé 22 ans avant la ville elle-même. Ruelles pavées, galeries d'art, cafés bohèmes — Neve Tzedek est le berceau de la renaissance hébraïque moderne.</p>
+                    <p class="day-intro">Votre voyage commence dans le quartier historique de Neve Tzedek, berceau de Tel Aviv, où authenticité et élégance moderne se rencontrent.</p>
                 </div>
-            </div>
-
-            <div class="story-box">
-                <p class="story-label">L'Histoire</p>
-                <p class="story-text">
-                    <strong>Neve Tzedek fut le PREMIER quartier juif bâti hors des murs de Jaffa, en 1887.</strong> 66 familles pionnières décidèrent de quitter la vieille ville surpeuplée pour fonder leur propre communauté sur les dunes. Le nom signifie "Oasis de Justice". C'est ici que l'hébreu moderne prit vie dans les rues — 22 ans avant que Tel Aviv n'existe officiellement.
-                </p>
-            </div>
-
-            <div class="anecdote-box">
-                <p class="anecdote-label">L'Anecdote à Raconter</p>
-                <p class="anecdote-text">
-                    L'écrivain <strong>Shmuel Yosef Agnon</strong>, seul auteur israélien à avoir reçu le Prix Nobel de Littérature (1966), vécut ici et écrivit ses premiers textes dans une petite maison au 2 Rokach Street. Cette maison est maintenant un musée — on y voit encore sa machine à écrire et ses manuscrits originaux.
-                </p>
-            </div>
-
-            <div class="secret-box">
-                <p class="secret-label">Le Lieu Secret</p>
-                <p class="secret-text">
-                    Le <strong>Chelouche Museum</strong> — une maison ottomane de 1887 restaurée. Dans la cave, on découvre les puits originaux que les fondateurs utilisaient pour l'eau douce. Un voyage dans le temps à 5 minutes de la plage.
-                </p>
             </div>
 
             <div class="details-grid">
@@ -580,973 +746,326 @@
                     <div class="detail-icon">🏨</div>
                     <span class="detail-tag gold">Hébergement</span>
                     <h3 class="detail-title">Elkonin Tel Aviv</h3>
-                    <p class="detail-content">
+                    <div class="detail-content">
                         <strong>MGallery Collection ★★★★★</strong><br>
                         9 Lilienblum Street<br>
-                        Tél: +972 3-548-4000<br><br>
-                        La famille Elkonin faisait partie des 66 familles fondatrices. Leur maison de 1913 est aujourd'hui cet hôtel boutique rénové en 2022.
-                    </p>
+                        Tél: +972 3-548-4000<br>
+                        Check-in 15h / Check-out 11h
+                    </div>
                 </div>
-
                 <div class="detail-card">
                     <div class="detail-icon">🍽️</div>
-                    <span class="detail-tag">Restaurant</span>
+                    <span class="detail-tag">Dîner</span>
                     <h3 class="detail-title">Rova Alef</h3>
-                    <p class="detail-content">
-                        <strong>Chef Evytar Malka — KASHER</strong><br>
+                    <div class="detail-content">
+                        <strong>Chef Evytar Malka — Kasher</strong><br>
                         18 Yehoshua ha-Talmi St<br>
                         +972 53-550-0605<br>
-                        Dim-Jeu 18h-01h
-                    </p>
+                        Dim-Jeu: 18h-01h
+                    </div>
                 </div>
-
                 <div class="detail-card">
                     <div class="detail-icon">🌅</div>
-                    <span class="detail-tag">Spot Photo</span>
-                    <h3 class="detail-title">Coucher de Soleil</h3>
-                    <p class="detail-content">
-                        <strong>Plage Alma</strong> ou le <strong>Port de Jaffa</strong> — les plus beaux sunsets de la côte méditerranéenne. Arriver 30 min avant pour les meilleures places.
-                    </p>
+                    <span class="detail-tag">Sunset</span>
+                    <h3 class="detail-title">Plage Alma</h3>
+                    <div class="detail-content">
+                        <strong>Coucher de soleil</strong><br>
+                        À 10 min à pied de l'hôtel<br>
+                        Ambiance relax et authentique
+                    </div>
                 </div>
             </div>
 
-            <button class="day-print-btn" onclick="printDay('jour1')">🖨️ Imprimer cette fiche</button>
+            <div class="story-box">
+                <div class="story-label">🏛️ Une Histoire d'Exception</div>
+                <div class="story-text">
+                    Neve Tzedek, fondé en 1887, fut le premier quartier juif hors des murs de Jaffa — 22 ans avant Tel Aviv ! La famille Elkonin faisait partie des 66 familles fondatrices. Leur maison de 1913 est aujourd'hui cet hôtel boutique rénové en 2022.
+                </div>
+            </div>
+
+            <!-- TESLA SUPERCHARGER -->
+            <div class="tesla-box">
+                <div class="tesla-header">
+                    <div class="tesla-logo">T</div>
+                    <div class="tesla-label">Tesla Supercharger</div>
+                </div>
+                <div class="tesla-title">Azrieli Town</div>
+                <div class="tesla-address">📍 3 Aluf Kalman Magen St, Tel Aviv</div>
+                <div class="tesla-specs">
+                    <span class="tesla-pill">⚡ 8 bornes</span>
+                    <span class="tesla-pill">🔌 250kW V3</span>
+                    <span class="tesla-pill">🕐 24h/24</span>
+                    <span class="tesla-pill">💰 ₪1.01/kWh</span>
+                </div>
+                <div class="tesla-note">Centre commercial avec restaurants et shopping</div>
+            </div>
         </div>
     </section>
 
-    <!-- ============================================ -->
     <!-- JOUR 2 - CÉSARÉE -->
-    <!-- ============================================ -->
     <section class="day-section" id="jour2">
         <div class="container">
+            <button onclick="printDay('jour2')" class="print-day-btn">🖨️ Imprimer cette fiche</button>
+            
             <div class="day-header">
                 <div class="day-image">
                     <span class="day-badge">Jour 2</span>
-                    <img src="https://images.unsplash.com/photo-1558522195-e1201b090344?w=800&q=80" alt="Césarée ruines romaines">
+                    <img src="https://images.unsplash.com/photo-1560264280-88b68371db39?w=800&q=80" alt="Césarée">
                 </div>
                 <div class="day-info">
-                    <p class="day-number">La Grandeur de Rome</p>
-                    <h2 class="day-title">Césarée — <span>Capitale Romaine</span></h2>
-                    <p class="day-intro">Marchez sur les traces d'Hérode le Grand et de Ponce Pilate dans l'une des plus spectaculaires cités antiques de Méditerranée. Amphithéâtre face à la mer, aqueduc millénaire, et port englouti.</p>
+                    <p class="day-number">Archéologie Romaine</p>
+                    <h2 class="day-title">Césarée — <span>Splendeur Antique</span></h2>
+                    <p class="day-intro">Explorez la ville portuaire construite par Hérode le Grand, où l'histoire romaine rencontre la Méditerranée.</p>
                 </div>
-            </div>
-
-            <div class="story-box">
-                <p class="story-label">L'Histoire</p>
-                <p class="story-text">
-                    <strong>Hérode le Grand construisit cette ville entre 22-10 av. J.-C. pour honorer l'empereur Auguste</strong> (Caesar en latin, d'où Césarée). Le port artificiel "Sebastos" était le PLUS GRAND de Méditerranée orientale — une prouesse d'ingénierie utilisant du béton romain sous-marin. C'est ici que <strong>Ponce Pilate avait son quartier général</strong> en tant que gouverneur de Judée. En 1961, des archéologues découvrirent au théâtre une inscription portant son nom — la SEULE preuve archéologique de son existence !
-                </p>
-            </div>
-
-            <div class="anecdote-box">
-                <p class="anecdote-label">L'Anecdote à Raconter</p>
-                <p class="anecdote-text">
-                    L'aqueduc de <strong>9 kilomètres</strong>, encore visible sur la plage, amenait l'eau depuis les sources du Mont Carmel. Mais le plus fou : quand les Croisés conquirent Césarée en 1101, ils découvrirent ce qu'ils crurent être <strong>le Saint Graal</strong> — une coupe en verre vert émeraude qu'ils emportèrent à Gênes. Elle y est toujours, dans la cathédrale San Lorenzo, sous le nom de "Sacro Catino" !
-                </p>
-            </div>
-
-            <div class="secret-box">
-                <p class="secret-label">Le Lieu Secret</p>
-                <p class="secret-text">
-                    <strong>Plongée sous-marine dans le port englouti d'Hérode</strong> — à 3-8 mètres de profondeur, on explore les structures romaines immergées : colonnes, entrepôts, et même les anciens quais où accostaient les navires il y a 2000 ans. Centre de plongée sur place.
-                </p>
             </div>
 
             <div class="details-grid">
-                <div class="detail-card">
+                <div class="detail-card featured">
                     <div class="detail-icon">🏛️</div>
-                    <span class="detail-tag">Visite</span>
+                    <span class="detail-tag gold">Site UNESCO</span>
                     <h3 class="detail-title">Parc National de Césarée</h3>
-                    <p class="detail-content">
-                        Théâtre romain (encore utilisé pour des concerts), hippodrome, palais d'Hérode sur la mer. Prévoir 3-4h minimum. Ouvert 8h-17h.<br>
-                        <strong>Entrée :</strong> 39₪
-                    </p>
+                    <div class="detail-content">
+                        Théâtre romain, hippodrome, aqueduc<br>
+                        Route Césarée, 38900<br>
+                        8h-17h (été 18h)<br>
+                        ~40₪ par adulte
+                    </div>
                 </div>
-
                 <div class="detail-card">
                     <div class="detail-icon">🍽️</div>
-                    <span class="detail-tag">Restaurant</span>
-                    <h3 class="detail-title">Helena</h3>
-                    <p class="detail-content">
-                        <strong>Dans le port antique</strong><br>
-                        Poisson frais, vue mer, ambiance romantique.<br>
-                        Réservation recommandée.<br>
-                        +972 4-610-1018
-                    </p>
+                    <span class="detail-tag">Déjeuner</span>
+                    <h3 class="detail-title">Port Césarée</h3>
+                    <div class="detail-content">
+                        <strong>Restaurant du port</strong><br>
+                        Quai du port antique<br>
+                        12h-23h<br>
+                        Poisson frais, vue exceptionnelle
+                    </div>
                 </div>
-
                 <div class="detail-card">
-                    <div class="detail-icon">⚡</div>
-                    <span class="detail-tag">Tesla</span>
-                    <h3 class="detail-title">Supercharger</h3>
-                    <p class="detail-content">
-                        <strong>Ofer Grand Mall Hadera</strong><br>
-                        15 min au nord de Césarée<br>
-                        8 bornes, 250kW<br>
-                        Parfait pendant le déjeuner
-                    </p>
-                </div>
-            </div>
-
-            <button class="day-print-btn" onclick="printDay('jour2')">🖨️ Imprimer cette fiche</button>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- JOUR 3 - HAÏFA & AKKO -->
-    <!-- ============================================ -->
-    <section class="day-section" id="jour3">
-        <div class="container">
-            <div class="day-header">
-                <div class="day-image">
-                    <span class="day-badge">Jour 3</span>
-                    <img src="https://images.unsplash.com/photo-1558027122-cfd5e3b3d7cd?w=800&q=80" alt="Jardins Bahá'í Haïfa">
-                </div>
-                <div class="day-info">
-                    <p class="day-number">Spiritualité & Croisades</p>
-                    <h2 class="day-title">Haïfa & Akko — <span>Jardins Suspendus</span></h2>
-                    <p class="day-intro">Des jardins les plus parfaits du monde aux tunnels secrets des Templiers. Deux villes, deux époques, une journée inoubliable entre mystique bahá'íe et aventures médiévales.</p>
+                    <div class="detail-icon">🔮</div>
+                    <span class="detail-tag">Insolite</span>
+                    <h3 class="detail-title">Port Englouti</h3>
+                    <div class="detail-content">
+                        <strong>Plongée sous-marine</strong><br>
+                        Structures romaines sous l'eau<br>
+                        Baptême et exploration guidée
+                    </div>
                 </div>
             </div>
 
             <div class="story-box">
-                <p class="story-label">L'Histoire — Jardins Bahá'í</p>
-                <p class="story-text">
-                    Les <strong>Jardins Bahá'í</strong>, classés UNESCO, sont entretenus par <strong>700 jardiniers</strong> venus du monde entier comme acte de foi et de dévotion. Les 19 terrasses descendent sur <strong>1 kilomètre</strong> le Mont Carmel jusqu'au mausolée du Báb au dôme doré. Le Báb, prophète fondateur du mouvement bahá'í, fut exécuté en Iran en 1850 et ses restes amenés secrètement ici après 50 ans de voyage clandestin à travers l'Empire ottoman.
-                </p>
+                <div class="story-label">🏛️ Une Histoire d'Exception</div>
+                <div class="story-text">
+                    Césarée fut construite par Hérode le Grand entre 22-10 av. J.-C. pour honorer l'empereur Auguste. Son port artificiel Sebastos était le plus grand de l'Empire romain. C'est ici que Ponce Pilate avait son quartier général — une inscription portant son nom (la seule preuve archéologique de son existence) fut découverte au théâtre en 1961.
+                </div>
             </div>
 
             <div class="anecdote-box">
-                <p class="anecdote-label">L'Anecdote à Raconter — Haïfa</p>
-                <p class="anecdote-text">
-                    Des pèlerins iraniens du 19e siècle <strong>marchaient PENDANT DES MOIS</strong> à travers déserts et montagnes, uniquement pour voir Bahá'u'lláh (le fondateur) saluer d'une fenêtre de sa prison à Akko. <strong>Une minute de sa main levée valait ce voyage épique.</strong> Aujourd'hui, les bahá'ís du monde entier continuent ce pèlerinage — mais en avion.
-                </p>
+                <div class="anecdote-label">💡 L'Anecdote Insolite</div>
+                <div class="anecdote-text">
+                    L'aqueduc de 9 km, encore visible aujourd'hui, amenait l'eau depuis les montagnes du Carmel. Les Croisés s'y installèrent en 1101 et y découvrirent ce qu'ils croyaient être le Saint Graal !
+                </div>
             </div>
 
-            <div class="story-box">
-                <p class="story-label">L'Histoire — Akko (Saint-Jean d'Acre)</p>
-                <p class="story-text">
-                    Le <strong>tunnel secret des Templiers</strong> (350 mètres sous terre) ne fut découvert qu'en <strong>1994 par ACCIDENT</strong> ! Une femme tentant de déboucher ses toilettes perça le plafond du passage médiéval. Les chevaliers utilisaient ce souterrain pour transporter discrètement trésors et marchandises vers le port sans être vus. Richard Cœur de Lion fit d'Akko la nouvelle capitale du Royaume croisé en 1191 après avoir repris la ville à Saladin.
-                </p>
+            <!-- TESLA SUPERCHARGER -->
+            <div class="tesla-box">
+                <div class="tesla-header">
+                    <div class="tesla-logo">T</div>
+                    <div class="tesla-label">Tesla Supercharger — Le plus proche</div>
+                </div>
+                <div class="tesla-title">Hadera — Mul HaHof Village</div>
+                <div class="tesla-address">📍 Route 2, Hadera (à ~20 min de Césarée)</div>
+                <div class="tesla-specs">
+                    <span class="tesla-pill">⚡ 12 bornes</span>
+                    <span class="tesla-pill">🔌 250kW V3</span>
+                    <span class="tesla-pill">🕐 24h/24</span>
+                    <span class="tesla-pill">🚗 ~20 min</span>
+                </div>
+                <div class="tesla-note">Centre commercial avec restaurants à proximité</div>
             </div>
+        </div>
+    </section>
 
-            <div class="secret-box">
-                <p class="secret-label">Le Lieu Secret</p>
-                <p class="secret-text">
-                    Le <strong>Hammam Al-Basha</strong> — bain turc du 18e siècle transformé en musée immersif. On y découvre l'histoire d'un marchand vénitien à travers un spectacle son et lumière. L'architecture ottomane est intacte, avec ses dômes percés d'étoiles de verre.
-                </p>
+    <!-- JOUR 3 - HAÏFA & AKKO -->
+    <section class="day-section" id="jour3">
+        <div class="container">
+            <button onclick="printDay('jour3')" class="print-day-btn">🖨️ Imprimer cette fiche</button>
+            
+            <div class="day-header">
+                <div class="day-image">
+                    <span class="day-badge">Jour 3</span>
+                    <img src="https://images.unsplash.com/photo-1540141981065-81d64c80d7cb?w=800&q=80" alt="Haïfa Jardins Bahai">
+                </div>
+                <div class="day-info">
+                    <p class="day-number">Jardins & Histoire</p>
+                    <h2 class="day-title">Haïfa & Akko — <span>Spiritualité</span></h2>
+                    <p class="day-intro">Des jardins suspendus du Mont Carmel aux tunnels secrets des Templiers, une journée entre contemplation et aventure.</p>
+                </div>
             </div>
 
             <div class="details-grid">
                 <div class="detail-card featured">
                     <div class="detail-icon">🌺</div>
-                    <span class="detail-tag gold">Visite Incontournable</span>
+                    <span class="detail-tag gold">Site UNESCO</span>
                     <h3 class="detail-title">Jardins Bahá'í</h3>
-                    <p class="detail-content">
-                        <strong>Visites guidées gratuites</strong><br>
-                        En anglais : 12h tous les jours<br>
-                        Réserver sur bahai-haifa.org<br>
-                        <em>Tenue respectueuse exigée</em>
-                    </p>
+                    <div class="detail-content">
+                        Les plus beaux jardins du monde<br>
+                        80 Hatzionut Ave, Haïfa<br>
+                        9h-17h (fermé mercredi)<br>
+                        Entrée gratuite
+                    </div>
                 </div>
-
                 <div class="detail-card">
-                    <div class="detail-icon">🏰</div>
-                    <span class="detail-tag">Akko</span>
-                    <h3 class="detail-title">Tunnel des Templiers</h3>
-                    <p class="detail-content">
-                        350m de passage souterrain médiéval.<br>
-                        Inclus dans le billet combiné Akko (62₪).<br>
-                        <strong>Ne pas manquer :</strong> la Citadelle des Hospitaliers.
-                    </p>
+                    <div class="detail-icon">⚔️</div>
+                    <span class="detail-tag">Cités Croisées</span>
+                    <h3 class="detail-title">Akko — Ville Ancienne</h3>
+                    <div class="detail-content">
+                        Tunnel des Templiers (350m)<br>
+                        Découvert en 1994 !<br>
+                        8h30-17h, ~15₪
+                    </div>
                 </div>
-
                 <div class="detail-card">
                     <div class="detail-icon">🍽️</div>
-                    <span class="detail-tag">Restaurant</span>
-                    <h3 class="detail-title">Uri Buri</h3>
-                    <p class="detail-content">
-                        <strong>Légende d'Akko — poissons</strong><br>
-                        Hagana St, Old Akko<br>
-                        +972 4-955-2212<br>
-                        Réservation OBLIGATOIRE
-                    </p>
-                </div>
-            </div>
-
-            <button class="day-print-btn" onclick="printDay('jour3')">🖨️ Imprimer cette fiche</button>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- JOUR 4 - TIBÉRIADE & GALILÉE -->
-    <!-- ============================================ -->
-    <section class="day-section" id="jour4">
-        <div class="container">
-            <div class="day-header">
-                <div class="day-image">
-                    <span class="day-badge">Jour 4</span>
-                    <img src="https://images.unsplash.com/photo-1542736536-58b8e7bb2ad6?w=800&q=80" alt="Lac de Tibériade">
-                </div>
-                <div class="day-info">
-                    <p class="day-number">Sur les Pas de Jésus</p>
-                    <h2 class="day-title">Tibériade — <span>Mer de Galilée</span></h2>
-                    <p class="day-intro">Le lac où Jésus marcha sur les eaux, multiplia les pains et recruta ses apôtres pêcheurs. Un lieu chargé de 2000 ans de foi et de miracles.</p>
+                    <span class="detail-tag">Déjeuner</span>
+                    <h3 class="detail-title">Fattoush Haïfa</h3>
+                    <div class="detail-content">
+                        Cuisine libanaise raffinée<br>
+                        38 Sderot David Ben Gurion<br>
+                        Vue mer exceptionnelle
+                    </div>
                 </div>
             </div>
 
             <div class="story-box">
-                <p class="story-label">L'Histoire</p>
-                <p class="story-text">
-                    Le <strong>lac de Tibériade</strong> (ou mer de Galilée) est le décor des plus grands miracles de Jésus : <strong>marche sur les eaux, pêche miraculeuse, multiplication des pains et des poissons</strong>. C'est sur ces rives qu'il recruta Pierre, André, Jacques et Jean avec ces mots : <em>"Suivez-moi, et je ferai de vous des pêcheurs d'hommes."</em> Le lac, à 212 mètres sous le niveau de la mer, est la principale réserve d'eau douce d'Israël.
-                </p>
+                <div class="story-label">🌺 Histoire de Haïfa</div>
+                <div class="story-text">
+                    Les Jardins Bahá'í, classés UNESCO, sont les plus beaux du monde. 700 jardiniers les entretiennent comme un acte de foi. Les 19 terrasses descendent sur 1 km le Mont Carmel jusqu'au mausolée du Báb au dôme doré.
+                </div>
             </div>
 
             <div class="anecdote-box">
-                <p class="anecdote-label">L'Anecdote à Raconter</p>
-                <p class="anecdote-text">
-                    En <strong>1986</strong>, après une sécheresse record, deux frères pêcheurs découvrirent une forme étrange dans la boue du lac asséché. C'était une <strong>barque de pêche datée du 1er siècle</strong> par analyse au carbone 14 — l'époque exacte de Jésus. Parfois appelée "la barque de Jésus", elle est exposée au musée Yigal Allon de Kibbutz Ginosar. On peut la voir (et s'émouvoir) à 10 min de Tibériade.
-                </p>
+                <div class="anecdote-label">💡 L'Anecdote Touchante</div>
+                <div class="anecdote-text">
+                    Des pèlerins iraniens du 19e siècle marchaient pendant des mois juste pour apercevoir Bahá'u'lláh saluer d'une fenêtre — une minute de sa main levée valait ce voyage épique.
+                </div>
             </div>
 
             <div class="secret-box">
-                <p class="secret-label">Le Lieu Secret</p>
-                <p class="secret-text">
-                    <strong>Yardenit</strong> — le site de baptême sur le Jourdain où, selon la tradition, Jésus fut baptisé par Jean-Baptiste. Des pèlerins du monde entier s'y font baptiser en robe blanche dans les eaux sacrées. Moment de grâce garanti, croyant ou non.
-                </p>
+                <div class="secret-label">🔮 Lieu Secret</div>
+                <div class="secret-text">
+                    <strong>Les Hammams Al-Jazzar</strong> — Dans la vieille ville d'Akko, ces bains turcs du 18e siècle ont été restaurés. L'architecture ottomane avec ses dômes en pierre est spectaculaire. Peu de touristes s'y aventurent.
+                </div>
+            </div>
+
+            <!-- TESLA SUPERCHARGER -->
+            <div class="tesla-box">
+                <div class="tesla-header">
+                    <div class="tesla-logo">T</div>
+                    <div class="tesla-label">Tesla Supercharger</div>
+                </div>
+                <div class="tesla-title">Grand Canyon Mall Haïfa</div>
+                <div class="tesla-address">📍 Derech Simha Golan 1, Haïfa</div>
+                <div class="tesla-specs">
+                    <span class="tesla-pill">⚡ 8 bornes</span>
+                    <span class="tesla-pill">🔌 250kW V3</span>
+                    <span class="tesla-pill">🕐 24h/24</span>
+                    <span class="tesla-pill">🛍️ Shopping</span>
+                </div>
+                <div class="tesla-note">Grand centre commercial avec restaurants et cinéma</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOUR 4 - TIBÉRIADE -->
+    <section class="day-section" id="jour4">
+        <div class="container">
+            <button onclick="printDay('jour4')" class="print-day-btn">🖨️ Imprimer cette fiche</button>
+            
+            <div class="day-header">
+                <div class="day-image">
+                    <span class="day-badge">Jour 4</span>
+                    <img src="https://images.unsplash.com/photo-1562696271-058001281816?w=800&q=80" alt="Lac de Tibériade">
+                </div>
+                <div class="day-info">
+                    <p class="day-number">Terre Sainte</p>
+                    <h2 class="day-title">Tibériade & Galilée — <span>Sur les Traces de Jésus</span></h2>
+                    <p class="day-intro">Le lac de Tibériade, théâtre des miracles du Nouveau Testament, dans un paysage de calme et de spiritualité.</p>
+                </div>
             </div>
 
             <div class="details-grid">
                 <div class="detail-card featured">
                     <div class="detail-icon">⛵</div>
-                    <span class="detail-tag gold">Expérience Unique</span>
-                    <h3 class="detail-title">Croisière sur le Lac</h3>
-                    <p class="detail-content">
-                        <strong>Bateau en bois réplique antique</strong><br>
-                        Départ Tibériade port, 1h<br>
-                        Coucher de soleil recommandé<br>
-                        ~100₪/personne
-                    </p>
+                    <span class="detail-tag gold">Site Biblique</span>
+                    <h3 class="detail-title">Lac de Tibériade</h3>
+                    <div class="detail-content">
+                        Mer de Galilée — Kinneret<br>
+                        Croisière disponible<br>
+                        Tradition de pêche ancestrale<br>
+                        Baignade possible
+                    </div>
                 </div>
-
                 <div class="detail-card">
                     <div class="detail-icon">🏛️</div>
                     <span class="detail-tag">Musée</span>
                     <h3 class="detail-title">Musée Yigal Allon</h3>
-                    <p class="detail-content">
-                        <strong>Kibbutz Ginosar</strong><br>
-                        La barque de 2000 ans exposée<br>
-                        Ouvert dim-jeu 8h-17h<br>
-                        Entrée : 30₪
-                    </p>
+                    <div class="detail-content">
+                        <strong>La "Barque de Jésus"</strong><br>
+                        Kibboutz Ginnosar<br>
+                        8h-17h, ~30₪<br>
+                        Barque du 1er siècle (1986)
+                    </div>
                 </div>
-
                 <div class="detail-card">
                     <div class="detail-icon">🍽️</div>
-                    <span class="detail-tag">Restaurant</span>
-                    <h3 class="detail-title">Decks</h3>
-                    <p class="detail-content">
-                        <strong>Sur pilotis face au lac</strong><br>
-                        Gdud Barak St, Tiberias<br>
-                        Poisson Saint-Pierre grillé<br>
-                        +972 4-672-1538
-                    </p>
-                </div>
-            </div>
-
-            <button class="day-print-btn" onclick="printDay('jour4')">🖨️ Imprimer cette fiche</button>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- JOURS 5-6 - JÉRUSALEM -->
-    <!-- ============================================ -->
-    <section class="day-section" id="jour5">
-        <div class="container">
-            <div class="day-header">
-                <div class="day-image">
-                    <span class="day-badge">Jours 5-6</span>
-                    <img src="https://images.unsplash.com/photo-1552423314-cf29ab68ad73?w=800&q=80" alt="Mur des Lamentations Jérusalem">
-                </div>
-                <div class="day-info">
-                    <p class="day-number">Ville Trois Fois Sainte</p>
-                    <h2 class="day-title">Jérusalem — <span>Éternelle</span></h2>
-                    <p class="day-intro">Là où trois religions se rencontrent. Le Mur Occidental, le Saint-Sépulcre, le Dôme du Rocher. Chaque pierre raconte 3000 ans d'histoire, de foi et de conflits.</p>
+                    <span class="detail-tag">Déjeuner</span>
+                    <h3 class="detail-title">Saint Peter's Fish</h3>
+                    <div class="detail-content">
+                        Poisson du lac traditionnel<br>
+                        Route du lac, Tibériade<br>
+                        Tilapia — "Poisson de Saint Pierre"
+                    </div>
                 </div>
             </div>
 
             <div class="story-box">
-                <p class="story-label">L'Histoire — Le Mur Occidental</p>
-                <p class="story-text">
-                    Le <strong>Mur des Lamentations</strong> est le dernier vestige du Second Temple d'Hérode, détruit par le général romain Titus en <strong>70 ap. J.-C.</strong> Selon la légende juive, Dieu fit échouer le commandant chargé de démolir ce mur occidental — la <strong>Shekhina</strong> (présence divine) n'a jamais quitté ce lieu. Pendant 2000 ans, les Juifs du monde entier ont prié tournés vers ce mur. Aujourd'hui encore, on y glisse des millions de petits papiers avec des prières.
-                </p>
+                <div class="story-label">✝️ Une Histoire Sacrée</div>
+                <div class="story-text">
+                    Le lac de Tibériade (ou mer de Galilée) est le théâtre des miracles de Jésus : marche sur les eaux, pêche miraculeuse, multiplication des pains. C'est ici qu'il recruta Pierre, André et les apôtres pêcheurs avec ces mots : "Je ferai de vous des pêcheurs d'hommes."
+                </div>
             </div>
 
             <div class="anecdote-box">
-                <p class="anecdote-label">L'Anecdote à Raconter</p>
-                <p class="anecdote-text">
-                    Le <strong>7 juin 1967</strong>, lors de la Guerre des Six Jours, le rabbin Shlomo Goren sonna le shofar au Mur — <strong>premier son juif en ce lieu depuis 1948</strong> (la Vieille Ville était sous contrôle jordanien). Les parachutistes israéliens, des soldats aguerris, pleuraient en répétant : <em>"Le Mur est à nous !"</em> Cette photo est devenue iconique.
-                </p>
-            </div>
-
-            <div class="story-box">
-                <p class="story-label">L'Histoire — Via Dolorosa</p>
-                <p class="story-text">
-                    Les <strong>14 stations du chemin de croix</strong> marquent le trajet de Jésus portant sa croix jusqu'au Golgotha. À la <strong>5e station</strong>, on montre l'empreinte de sa main sur la pierre, laissée quand Simon de Cyrène l'aida à porter son fardeau. Chaque vendredi à 15h, les franciscains mènent une procession solennelle.
-                </p>
-            </div>
-
-            <div class="secret-box">
-                <p class="secret-label">Le Lieu Secret</p>
-                <p class="secret-text">
-                    Les <strong>Tunnels du Mur Occidental</strong> — 500 mètres de galeries souterraines longeant les fondations hérodiennes. Point fort : une pierre de <strong>570 TONNES</strong>, la plus lourde jamais déplacée dans l'Antiquité sans machines modernes. Comment les ouvriers d'Hérode y sont-ils parvenus ? Mystère total.
-                </p>
-            </div>
-
-            <div class="details-grid">
-                <div class="detail-card featured">
-                    <div class="detail-icon">🏨</div>
-                    <span class="detail-tag gold">Hébergement</span>
-                    <h3 class="detail-title">King David Hotel</h3>
-                    <p class="detail-content">
-                        <strong>Le palace légendaire ★★★★★</strong><br>
-                        23 King David St<br>
-                        Où ont séjourné tous les chefs d'État<br>
-                        Vue imprenable sur la Vieille Ville
-                    </p>
-                </div>
-
-                <div class="detail-card">
-                    <div class="detail-icon">🕳️</div>
-                    <span class="detail-tag">Incontournable</span>
-                    <h3 class="detail-title">Tunnels du Mur</h3>
-                    <p class="detail-content">
-                        <strong>Réserver à l'avance !</strong><br>
-                        thekotel.org<br>
-                        Visite guidée 1h30<br>
-                        Entrée : 50₪
-                    </p>
-                </div>
-
-                <div class="detail-card">
-                    <div class="detail-icon">🍽️</div>
-                    <span class="detail-tag">Restaurant</span>
-                    <h3 class="detail-title">Machneyuda</h3>
-                    <p class="detail-content">
-                        <strong>Le meilleur restaurant d'Israël</strong><br>
-                        10 Beit Ya'akov St, marché<br>
-                        Ambiance festive, cuisine créative<br>
-                        Réserver 2 semaines avant !
-                    </p>
+                <div class="anecdote-label">💡 L'Anecdote Archéologique</div>
+                <div class="anecdote-text">
+                    En 1986, une barque de pêche du 1er siècle fut découverte dans la boue — datée au carbone 14, elle est parfois appelée "la barque de Jésus". Elle est exposée au musée Yigal Allon.
                 </div>
             </div>
 
-            <button class="day-print-btn" onclick="printDay('jour5')">🖨️ Imprimer cette fiche</button>
+            <div class="photo-box">
+                <div class="photo-label">📸 Spot Photo Incontournable</div>
+                <div class="photo-text">
+                    <strong>Mont des Béatitudes au lever du soleil</strong> — Vue panoramique sur tout le lac, avec les collines de Galilée en arrière-plan. L'atmosphère est purement céleste.
+                </div>
+            </div>
+
+            <!-- TESLA SUPERCHARGER -->
+            <div class="tesla-box">
+                <div class="tesla-header">
+                    <div class="tesla-logo">T</div>
+                    <div class="tesla-label">Tesla Supercharger — Le plus proche</div>
+                </div>
+                <div class="tesla-title">Afula — G Park Mall</div>
+                <div class="tesla-address">📍 Derekh Yotam, Afula (à ~40 min de Tibériade)</div>
+                <div class="tesla-specs">
+                    <span class="tesla-pill">⚡ 8 bornes</span>
+                    <span class="tesla-pill">🔌 250kW V3</span>
+                    <span class="tesla-pill">🕐 24h/24</span>
+                    <span class="tesla-pill">🚗 ~40 min</span>
+                </div>
+                <div class="tesla-note">⚠️ Pas de Supercharger à Tibériade même. Prévoir la recharge à Afula ou Kiryat Shmona.</div>
+            </div>
         </div>
     </section>
-
-    <!-- ============================================ -->
-    <!-- JOUR 7 - MER MORTE & MASSADA -->
-    <!-- ============================================ -->
-    <section class="day-section" id="jour7">
-        <div class="container">
-            <div class="day-header">
-                <div class="day-image">
-                    <span class="day-badge">Jour 7</span>
-                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Mer Morte">
-                </div>
-                <div class="day-info">
-                    <p class="day-number">Le Point le Plus Bas sur Terre</p>
-                    <h2 class="day-title">Mer Morte & <span>Massada</span></h2>
-                    <p class="day-intro">Flottez sans effort dans les eaux les plus salées du monde, puis gravissez la forteresse où 960 Juifs choisirent la mort plutôt que l'esclavage. Deux expériences extrêmes en une journée.</p>
-                </div>
-            </div>
-
-            <div class="story-box">
-                <p class="story-label">L'Histoire — Mer Morte</p>
-                <p class="story-text">
-                    À <strong>-430 mètres</strong>, c'est le point le plus bas de la surface terrestre. Sa salinité de <strong>34%</strong> (10 fois l'océan) rend la noyade quasi impossible — on flotte comme un bouchon ! Dans la Bible, c'est ici que <strong>Sodome et Gomorrhe</strong> furent détruites par le feu divin. La femme de Lot, s'étant retournée pour regarder, fut transformée en statue de sel — le mont Sedom aurait encore sa forme.
-                </p>
-            </div>
-
-            <div class="story-box">
-                <p class="story-label">L'Histoire — Massada</p>
-                <p class="story-text">
-                    En <strong>73 ap. J.-C.</strong>, après la destruction du Temple, 960 Zélotes juifs se réfugièrent dans cette forteresse au sommet d'une falaise. Les Romains construisirent une rampe de siège <strong>pendant 7 MOIS</strong> pour atteindre le sommet. La veille de l'assaut final, le chef <strong>Elazar ben Yair</strong> convainquit ses compagnons : <em>"Mourons libres plutôt qu'esclaves."</em> Au matin, les Romains ne trouvèrent que des cadavres et deux femmes survivantes qui racontèrent l'histoire.
-                </p>
-            </div>
-
-            <div class="anecdote-box">
-                <p class="anecdote-label">L'Anecdote à Raconter</p>
-                <p class="anecdote-text">
-                    Aujourd'hui, les soldats de <strong>Tsahal</strong> (armée israélienne) prêtent serment à Massada à l'aube, face au lever du soleil sur le désert de Judée. Ils prononcent ces mots : <strong><em>"Massada ne tombera plus jamais."</em></strong> C'est devenu le symbole de la résilience du peuple juif.
-                </p>
-            </div>
-
-            <div class="secret-box">
-                <p class="secret-label">Le Lieu Secret</p>
-                <p class="secret-text">
-                    <strong>Ein Gedi</strong> — l'oasis où le roi David se cacha de Saül dans une grotte (1 Samuel 24). On peut encore voir cette grotte et randonner dans le canyon jusqu'aux cascades. Ibex et damans des rochers garantis.
-                </p>
-            </div>
-
-            <div class="details-grid">
-                <div class="detail-card featured">
-                    <div class="detail-icon">🏔️</div>
-                    <span class="detail-tag gold">Massada</span>
-                    <h3 class="detail-title">Téléphérique ou Serpent ?</h3>
-                    <p class="detail-content">
-                        <strong>Téléphérique :</strong> 5 min, 78₪<br>
-                        <strong>Sentier du Serpent :</strong> 45 min de montée<br>
-                        Lever du soleil = MAGIQUE<br>
-                        Ouvre à 5h été, 6h hiver
-                    </p>
-                </div>
-
-                <div class="detail-card">
-                    <div class="detail-icon">🌊</div>
-                    <span class="detail-tag">Baignade</span>
-                    <h3 class="detail-title">Plages Mer Morte</h3>
-                    <p class="detail-content">
-                        <strong>Ein Bokek</strong> — plage publique gratuite<br>
-                        <strong>Kalia Beach</strong> — plus au nord<br>
-                        <em>Ne pas raser avant !</em><br>
-                        Douche obligatoire après
-                    </p>
-                </div>
-
-                <div class="detail-card">
-                    <div class="detail-icon">🏨</div>
-                    <span class="detail-tag">Option Nuit</span>
-                    <h3 class="detail-title">Spa Mer Morte</h3>
-                    <p class="detail-content">
-                        <strong>Beresheet Hotel</strong> (Mitzpe Ramon)<br>
-                        Ou nuit spa dans un resort Ein Bokek<br>
-                        Boue noire, sels minéraux, flottaison
-                    </p>
-                </div>
-            </div>
-
-            <button class="day-print-btn" onclick="printDay('jour7')">🖨️ Imprimer cette fiche</button>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- JOURS 8-9 - EILAT -->
-    <!-- ============================================ -->
-    <section class="day-section" id="jour8">
-        <div class="container">
-            <div class="day-header">
-                <div class="day-image">
-                    <span class="day-badge">Jours 8-9</span>
-                    <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=800&q=80" alt="Mer Rouge Eilat">
-                </div>
-                <div class="day-info">
-                    <p class="day-number">Paradis Corallien</p>
-                    <h2 class="day-title">Eilat — <span>Mer Rouge</span></h2>
-                    <p class="day-intro">La Riviera israélienne. Plages de sable fin, récifs coralliens spectaculaires, et 360 jours de soleil par an. Le port du roi Salomon devenu station balnéaire de luxe.</p>
-                </div>
-            </div>
-
-            <div class="story-box">
-                <p class="story-label">L'Histoire</p>
-                <p class="story-text">
-                    Eilat est l'ancienne <strong>Ezion-Geber</strong>, le port légendaire du <strong>roi Salomon</strong> (10e siècle av. J.-C.) d'où partaient les navires vers l'Afrique et l'Asie, rapportant or, épices, ivoire, singes et paons. Mille ans plus tard, <strong>Lawrence d'Arabie</strong> y passa lors de sa révolte arabe de 1917. En mars 1949, le lever du drapeau israélien à Eilat marqua officiellement la fin de la Guerre d'Indépendance — un drapeau... dessiné à l'encre sur un drap blanc !
-                </p>
-            </div>
-
-            <div class="anecdote-box">
-                <p class="anecdote-label">L'Anecdote à Raconter</p>
-                <p class="anecdote-text">
-                    En mai 1967, l'Égypte de Nasser ferma le <strong>détroit de Tiran</strong> aux navires israéliens vers Eilat — bloquant la seule sortie d'Israël vers l'Asie. Israël considéra cet acte comme un <strong>casus belli</strong> (déclaration de guerre). Trois semaines plus tard éclatait la <strong>Guerre des Six Jours</strong>. Aujourd'hui, on voit l'île de Tiran depuis les plages d'Eilat.
-                </p>
-            </div>
-
-            <div class="secret-box">
-                <p class="secret-label">Le Lieu Secret</p>
-                <p class="secret-text">
-                    <strong>L'Île des Coraux</strong> (Coral Island/Jeziraat Fara'un) — une petite île avec une forteresse croisée du 12e siècle, accessible en bateau depuis Eilat (côté égyptien, mais excursion possible). On fait du snorkeling autour de murs médiévaux ! Sinon : <strong>l'Observatoire sous-marin</strong> — descendre 6m sous la mer Rouge et observer poissons tropicaux et coraux à travers les vitres.
-                </p>
-            </div>
-
-            <div class="details-grid">
-                <div class="detail-card featured">
-                    <div class="detail-icon">🏨</div>
-                    <span class="detail-tag gold">Hébergement</span>
-                    <h3 class="detail-title">The Reef Eilat</h3>
-                    <p class="detail-content">
-                        <strong>Curio Collection by Hilton ★★★★★</strong><br>
-                        Face à la mer Rouge<br>
-                        Plage privée + récif snorkeling<br>
-                        Suites avec jacuzzi terrasse
-                    </p>
-                </div>
-
-                <div class="detail-card">
-                    <div class="detail-icon">🤿</div>
-                    <span class="detail-tag">Activité</span>
-                    <h3 class="detail-title">Dolphin Reef</h3>
-                    <p class="detail-content">
-                        <strong>Nager avec les dauphins</strong><br>
-                        Plage relaxante, snorkeling<br>
-                        Southern Beach, Eilat<br>
-                        Réserver tôt le matin
-                    </p>
-                </div>
-
-                <div class="detail-card">
-                    <div class="detail-icon">🍽️</div>
-                    <span class="detail-tag">Restaurant</span>
-                    <h3 class="detail-title">Pastory</h3>
-                    <p class="detail-content">
-                        <strong>Italien haut de gamme</strong><br>
-                        Tarshish St, en bord de mer<br>
-                        Pâtes fraîches, fruits de mer<br>
-                        +972 8-634-5111
-                    </p>
-                </div>
-            </div>
-
-            <button class="day-print-btn" onclick="printDay('jour8')">🖨️ Imprimer cette fiche</button>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- JOUR 10 - MITZPE RAMON -->
-    <!-- ============================================ -->
-    <section class="day-section" id="jour10">
-        <div class="container">
-            <div class="day-header">
-                <div class="day-image">
-                    <span class="day-badge">Jour 10</span>
-                    <img src="https://images.unsplash.com/photo-1501621667575-af81f1f0adcc?w=800&q=80" alt="Makhtesh Ramon cratère">
-                </div>
-                <div class="day-info">
-                    <p class="day-number">Le Grand Cratère</p>
-                    <h2 class="day-title">Mitzpe Ramon — <span>Makhtesh</span></h2>
-                    <p class="day-intro">Face au plus grand cratère d'érosion du monde. Paysages martiens, ciel étoilé sans pollution lumineuse, et faune du désert. Un autre monde à 2h de Tel Aviv.</p>
-                </div>
-            </div>
-
-            <div class="story-box">
-                <p class="story-label">L'Histoire Géologique</p>
-                <p class="story-text">
-                    Le <strong>Makhtesh Ramon</strong> n'est PAS un cratère de météorite, mais le plus grand <strong>cirque d'érosion</strong> au monde : <strong>40 km de long, 9 km de large, 500 m de profondeur</strong>. Il y a 200 millions d'années, c'était un OCÉAN. Les parois multicolores sont un livre ouvert de l'histoire géologique terrestre — chaque strate raconte une ère différente. Le mot "makhtesh" est hébreu car ce phénomène n'existe qu'en Israël (5 au total) et en Égypte (1).
-                </p>
-            </div>
-
-            <div class="anecdote-box">
-                <p class="anecdote-label">L'Anecdote à Raconter</p>
-                <p class="anecdote-text">
-                    Il y a 56 millions d'années, des volcans ont éclaté ICI... <strong>SOUS LA NEIGE</strong> ! Oui, le Néguev était enneigé. Cette combinaison rare créa des formations de lave uniques, visibles nulle part ailleurs. Quant à la ville de Mitzpe Ramon, elle fut fondée en 1951 comme simple <strong>camp d'ouvriers</strong> construisant la route du désert vers Eilat. Aujourd'hui, c'est un spot prisé des astronomes amateurs — zéro pollution lumineuse.
-                </p>
-            </div>
-
-            <div class="secret-box">
-                <p class="secret-label">Le Lieu Secret</p>
-                <p class="secret-text">
-                    <strong>Ein Saharonim</strong> — la seule source d'eau au fond du cratère, cachée dans un canyon secret. À l'aube, ibex, renards, hyènes rayées et même des léopards (très rares) viennent s'y abreuver. Randonnée de 3h aller-retour depuis le fond du cratère.
-                </p>
-            </div>
-
-            <div class="details-grid">
-                <div class="detail-card featured">
-                    <div class="detail-icon">🏨</div>
-                    <span class="detail-tag gold">Hébergement</span>
-                    <h3 class="detail-title">Beresheet Hotel</h3>
-                    <p class="detail-content">
-                        <strong>Le plus beau d'Israël ★★★★★</strong><br>
-                        Suites avec vue cratère<br>
-                        Piscine à débordement légendaire<br>
-                        Observation étoiles sur demande
-                    </p>
-                </div>
-
-                <div class="detail-card">
-                    <div class="detail-icon">🔭</div>
-                    <span class="detail-tag">Activité</span>
-                    <h3 class="detail-title">Nuit Étoilée</h3>
-                    <p class="detail-content">
-                        <strong>Observatoire Ramon</strong><br>
-                        Sessions astronomie guidées<br>
-                        Voie lactée visible à l'œil nu<br>
-                        Réserver à l'hôtel
-                    </p>
-                </div>
-
-                <div class="detail-card">
-                    <div class="detail-icon">🚗</div>
-                    <span class="detail-tag">Route</span>
-                    <h3 class="detail-title">Route Panoramique</h3>
-                    <p class="detail-content">
-                        <strong>Route 40 à travers le cratère</strong><br>
-                        S'arrêter aux viewpoints<br>
-                        "Prism" — formation arc-en-ciel<br>
-                        Carpentry — roches hexagonales
-                    </p>
-                </div>
-            </div>
-
-            <button class="day-print-btn" onclick="printDay('jour10')">🖨️ Imprimer cette fiche</button>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- JOURS 11-14 - THE SETAI TEL AVIV -->
-    <!-- ============================================ -->
-    <section class="day-section" id="jour11">
-        <div class="container">
-            <div class="day-header">
-                <div class="day-image">
-                    <span class="day-badge">Jours 11-14</span>
-                    <img src="https://images.unsplash.com/photo-1555954937-0c8f27f13bb0?w=800&q=80" alt="Jaffa vieille ville">
-                </div>
-                <div class="day-info">
-                    <p class="day-number">Grand Finale</p>
-                    <h2 class="day-title">The Setai — <span>Jaffa</span></h2>
-                    <p class="day-intro">Terminez en apothéose dans une forteresse croisée du 12e siècle transformée en palace. Jaffa, la ville la plus ancienne du monde encore habitée, vous dévoile ses secrets.</p>
-                </div>
-            </div>
-
-            <div class="story-box">
-                <p class="story-label">L'Histoire — The Setai</p>
-                <p class="story-text">
-                    The Setai Tel Aviv occupe une <strong>FORTERESSE CROISÉE DU 12e SIÈCLE</strong> ! Transformée en prison ottomane (kishle) au 19e siècle, puis en poste de police britannique sous le Mandat, puis en commissariat israélien jusqu'en... <strong>2005</strong>. La famille Nakash (créateurs du Setai Miami) l'a achetée et rénovée pendant <strong>12 ans pour 100 millions de dollars</strong>. Résultat : le plus bel hôtel d'Israël, où chaque suite révèle des pierres médiévales.
-                </p>
-            </div>
-
-            <div class="anecdote-box">
-                <p class="anecdote-label">L'Anecdote à Raconter</p>
-                <p class="anecdote-text">
-                    Dans le lobby, vous verrez sous verre des <strong>pièces de monnaie du 12e siècle</strong> et des armes des années 1890 découvertes lors des fouilles archéologiques. Le <strong>sceau du Sultan Abdul Hamid II</strong> orne encore l'entrée principale — personne n'a osé le retirer. Demandez une visite des caves voûtées : prison ottomane avec les chaînes encore visibles.
-                </p>
-            </div>
-
-            <div class="story-box">
-                <p class="story-label">L'Histoire — Jaffa</p>
-                <p class="story-text">
-                    Jaffa est l'une des plus anciennes villes portuaires du monde — <strong>4000 ans d'histoire</strong>. Selon la mythologie grecque, c'est ici qu'<strong>Andromède fut enchaînée à un rocher</strong> avant d'être sauvée par Persée du monstre marin. Le rocher est encore visible dans le port ! Dans la Bible, c'est de Jaffa que <strong>Jonas embarqua avant d'être avalé par la baleine</strong> (Jonas 1:3). Et c'est ici que Pierre eut sa vision lui ordonnant d'évangéliser les non-Juifs (Actes 10).
-                </p>
-            </div>
-
-            <div class="secret-box">
-                <p class="secret-label">Le Lieu Secret</p>
-                <p class="secret-text">
-                    Le <strong>Shuk Hapishpeshim</strong> (marché aux puces de Jaffa) — labyrinthe de ruelles où chiner antiquités ottomanes, vinyles des années 50, meubles arabisants, et trésors improbables. Négocier fait partie du jeu. Ouvert tous les jours sauf samedi.
-                </p>
-            </div>
-
-            <div class="details-grid">
-                <div class="detail-card featured">
-                    <div class="detail-icon">🏨</div>
-                    <span class="detail-tag gold">Hébergement</span>
-                    <h3 class="detail-title">The Setai Tel Aviv</h3>
-                    <p class="detail-content">
-                        <strong>Leading Hotels of the World ★★★★★</strong><br>
-                        22 David Razi'el St, Old Jaffa<br>
-                        Suites avec pierres croisées<br>
-                        Spa, rooftop, restaurant étoilé
-                    </p>
-                </div>
-
-                <div class="detail-card">
-                    <div class="detail-icon">🍽️</div>
-                    <span class="detail-tag">Restaurant</span>
-                    <h3 class="detail-title">Onza</h3>
-                    <p class="detail-content">
-                        <strong>Dans le Setai — Chef Eyal Shani</strong><br>
-                        Cuisine méditerranéenne créative<br>
-                        Légumes grillés légendaires<br>
-                        Réservé aux hôtes ou VIP
-                    </p>
-                </div>
-
-                <div class="detail-card">
-                    <div class="detail-icon">🌅</div>
-                    <span class="detail-tag">Spot Photo</span>
-                    <h3 class="detail-title">Port de Jaffa</h3>
-                    <p class="detail-content">
-                        <strong>Coucher de soleil au port</strong><br>
-                        Bateaux de pêcheurs colorés<br>
-                        Vue sur Tel Aviv au loin<br>
-                        Arriver 30 min avant sunset
-                    </p>
-                </div>
-            </div>
-
-            <button class="day-print-btn" onclick="printDay('jour11')">🖨️ Imprimer cette fiche</button>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- JOUR 15 - DÉPART -->
-    <!-- ============================================ -->
-    <section class="day-section" id="jour15" style="text-align: center; padding: 4rem 0;">
-        <div class="container">
-            <div class="day-number">Jour 15</div>
-            <h2 class="day-title" style="font-size: 2.5rem;">✈️ <span>Lehitraot, Israël</span></h2>
-            <p class="day-intro" style="max-width: 600px; margin: 1rem auto;">
-                Transfert vers l'aéroport Ben Gurion. 15 jours de découvertes, d'émotions et de rencontres. Vous repartez avec des souvenirs pour la vie... et l'envie de revenir.
-            </p>
-            <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; color: var(--gold); margin-top: 2rem;">
-                "לְהִתְרָאוֹת" — À bientôt
-            </p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer" id="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <div class="footer-logo">Israël<span>Elite</span></div>
-                    <p class="footer-tagline">Voyages d'exception en Terre Sainte, conçus pour les âmes en quête d'authenticité.</p>
-                </div>
-                <div>
-                    <h4 class="footer-title">Itinéraire</h4>
-                    <ul class="footer-links">
-                        <li><a href="#jour1">Tel Aviv</a></li>
-                        <li><a href="#jour5">Jérusalem</a></li>
-                        <li><a href="#jour7">Mer Morte</a></li>
-                        <li><a href="#jour8">Eilat</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Contact</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">voyage@israel-elite.com</a></li>
-                        <li><a href="#">Paris • Tel Aviv</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Israël Elite — Voyage privé sur mesure</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Smooth scroll for nav links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Print single day function
-        function printDay(dayId) {
-            const daySection = document.getElementById(dayId);
-            if (!daySection) return;
-
-            const dayTitle = daySection.querySelector('.day-title')?.textContent || 'Fiche Voyage';
-            const dayNumber = daySection.querySelector('.day-number')?.textContent || '';
-            
-            const printWindow = window.open('', '_blank', 'width=800,height=600');
-            printWindow.document.write(`
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>${dayNumber} - ${dayTitle}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #0F172A;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px;
-            background: white;
-        }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        
-        .print-header {
-            text-align: center;
-            border-bottom: 3px solid #D4AF37;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        .print-header h1 {
-            font-size: 28px;
-            color: #0F172A;
-            margin-bottom: 5px;
-        }
-        .print-header p {
-            font-size: 14px;
-            color: #D4AF37;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-        }
-        
-        .print-image {
-            width: 100%;
-            max-height: 250px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        
-        .story-box {
-            background: #fdf8f0;
-            border-left: 4px solid #D4AF37;
-            padding: 15px 20px;
-            margin: 20px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        .story-box h3 {
-            font-size: 12px;
-            color: #D4AF37;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 8px;
-        }
-        .story-box p {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 16px;
-            font-style: italic;
-            line-height: 1.7;
-        }
-        
-        .anecdote-box {
-            background: #e8f6f8;
-            padding: 15px 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-        }
-        .anecdote-box h3 {
-            font-size: 11px;
-            color: #0891B2;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 8px;
-        }
-        
-        .secret-box {
-            background: #f3e8f8;
-            padding: 15px 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-        }
-        .secret-box h3 {
-            font-size: 11px;
-            color: #8b5cf6;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 8px;
-        }
-        
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 25px;
-        }
-        .detail-card {
-            background: #f9f9f9;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 15px;
-        }
-        .detail-card.featured {
-            border-color: #D4AF37;
-            background: #fffbf0;
-        }
-        .detail-card h4 {
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-        .detail-card p {
-            font-size: 12px;
-            color: #64748B;
-            line-height: 1.5;
-        }
-        .detail-icon {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .detail-tag {
-            display: inline-block;
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            padding: 3px 8px;
-            background: rgba(8, 145, 178, 0.1);
-            color: #0891B2;
-            border-radius: 10px;
-            margin-bottom: 8px;
-        }
-        .detail-tag.gold {
-            background: rgba(212, 175, 55, 0.15);
-            color: #b8941f;
-        }
-        
-        .print-footer {
-            margin-top: 30px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-            text-align: center;
-            font-size: 11px;
-            color: #999;
-        }
-        
-        @media print {
-            body { padding: 20px; }
-            .print-image { max-height: 200px; }
-        }
-    </style>
-</head>
-<body>
-    <div class="print-header">
-        <p>${dayNumber}</p>
-        <h1>${dayTitle.replace(/<[^>]*>/g, '').replace(/—|–/g, '—')}</h1>
-    </div>
-    ${daySection.innerHTML
-        .replace(/<button[^>]*>.*?<\/button>/gi, '')
-        .replace(/class="day-badge"[^>]*>[^<]*<\/span>/gi, '')
-        .replace(/class="day-number"[^>]*>[^<]*<\/p>/gi, '')
-        .replace(/class="day-title"[^>]*>.*?<\/h2>/gis, '')
-        .replace(/class="day-header"/g, '')
-        .replace(/class="day-info"/g, '')
-        .replace(/class="day-image"/g, 'style="margin-bottom:20px"')
-        .replace(/<img([^>]*)>/g, '<img$1 class="print-image">')
-    }
-    <div class="print-footer">
-        IsraëlElite — Voyage privé sur mesure — ${new Date().toLocaleDateString('fr-FR')}
-    </div>
-</body>
-</html>
-            `);
-            printWindow.document.close();
-            setTimeout(() => {
-                printWindow.print();
-            }, 500);
-        }
-
-        // Quick nav active state
-        const quickNavBtns = document.querySelectorAll('.quick-nav-btn');
-        const sections = document.querySelectorAll('.day-section');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.id;
-                    quickNavBtns.forEach(btn => {
-                        btn.classList.remove('active');
-                        if (btn.getAttribute('href') === '#' + id) {
-                            btn.classList.add('active');
-                        }
-                    });
-                }
-            });
-        }, { threshold: 0.3 });
-
-        sections.forEach(section => observer.observe(section));
-    </script>
-</body>
-</html>
