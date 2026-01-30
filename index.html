@@ -3,25 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voyage Israël 2026 — 1-15 Février</title>
+    <title>Voyage Privé en Israël — 15 Jours d'Exception</title>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    
     <style>
+        /* ========================================
+           CSS CUSTOM PROPERTIES
+           ======================================== */
         :root {
+            /* Palette */
             --teal: #0891B2;
+            --teal-light: #22D3EE;
             --teal-dark: #0E7490;
-            --teal-light: #CFFAFE;
-            --teal-soft: #E0F2FE;
+            --gold: #D4AF37;
+            --gold-light: #F5D76E;
+            --gold-dark: #B8941F;
             --cream: #FDF8F3;
+            --cream-dark: #F5EDE3;
+            --dark: #0F172A;
+            --dark-light: #1E293B;
             --white: #FFFFFF;
-            --dark: #1E293B;
             --gray: #64748B;
-            --light-gray: #E2E8F0;
-            --sand: #F5F0E8;
+            --gray-light: #94A3B8;
+            
+            /* Gradients */
+            --gradient-hero: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 50%, rgba(8, 145, 178, 0.3) 100%);
+            --gradient-gold: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+            --gradient-teal: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+            --gradient-mesh: radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                              radial-gradient(ellipse at 80% 70%, rgba(8, 145, 178, 0.15) 0%, transparent 50%),
+                              radial-gradient(ellipse at 50% 50%, rgba(253, 248, 243, 0.8) 0%, var(--cream) 100%);
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.1), 0 2px 4px -2px rgba(15, 23, 42, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -4px rgba(15, 23, 42, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.1);
+            --shadow-glow: 0 0 40px rgba(212, 175, 55, 0.3);
+            --shadow-glow-teal: 0 0 40px rgba(8, 145, 178, 0.3);
+            
+            /* Typography */
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-accent: 'Cormorant Garamond', serif;
+            
+            /* Spacing */
+            --section-padding: 8rem;
+            --container-max: 1400px;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Glassmorphism */
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-blur: blur(20px) saturate(180%);
         }
 
-        * {
+        /* ========================================
+           RESET & BASE
+           ======================================== */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -29,1191 +77,1745 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--cream);
-            color: var(--dark);
+            font-family: var(--font-body);
+            font-weight: 400;
             line-height: 1.6;
+            color: var(--dark);
+            background: var(--gradient-mesh);
+            background-attachment: fixed;
             overflow-x: hidden;
         }
 
-        /* Header Fixe */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ========================================
+           UTILITY CLASSES
+           ======================================== */
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .text-gradient {
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .label {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--teal);
+        }
+
+        /* ========================================
+           ANIMATIONS
+           ======================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translateY(10px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes reveal {
+            from {
+                clip-path: inset(0 100% 0 0);
+            }
+            to {
+                clip-path: inset(0 0 0 0);
+            }
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .animate-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+        .delay-500 { transition-delay: 0.5s; }
+
+        /* ========================================
+           HEADER & NAVIGATION
+           ======================================== */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--light-gray);
-            transition: all 0.3s ease;
+            padding: 1.5rem 2rem;
+            transition: all var(--transition-normal);
+            background: transparent;
         }
 
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
+        .header.scrolled {
+            background: rgba(253, 248, 243, 0.9);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             padding: 1rem 2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-inner {
+            max-width: var(--container-max);
+            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-display);
             font-size: 1.5rem;
             font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.1em;
+            transition: color var(--transition-normal);
+        }
+
+        .header.scrolled .logo {
+            color: var(--dark);
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            transition: color var(--transition-fast);
+        }
+
+        .header.scrolled .nav-link {
+            color: var(--dark);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--gold);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient-gold);
+            z-index: 1001;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* Side Navigation Dots */
+        .side-nav {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .side-nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.75rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .side-nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.3);
+            border: 2px solid transparent;
+            transition: all var(--transition-normal);
+        }
+
+        .side-nav-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--dark);
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all var(--transition-normal);
+            white-space: nowrap;
+        }
+
+        .side-nav-item:hover .side-nav-label,
+        .side-nav-item.active .side-nav-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .side-nav-item:hover .side-nav-dot,
+        .side-nav-item.active .side-nav-dot {
+            background: var(--gold);
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 1024px) {
+            .side-nav {
+                display: none;
+            }
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+            animation: heroZoom 20s ease-out forwards;
+        }
+
+        @keyframes heroZoom {
+            to { transform: scale(1); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-hero);
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            max-width: 900px;
+            padding: 0 2rem;
+            z-index: 1;
+        }
+
+        .hero-label {
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .hero-title-line {
+            display: block;
+            opacity: 0;
+            transform: translateY(100%);
+            animation: revealUp 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+
+        .hero-title-line:nth-child(1) { animation-delay: 0.8s; }
+        .hero-title-line:nth-child(2) { animation-delay: 1s; }
+
+        @keyframes revealUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-accent);
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            font-weight: 400;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1.3s;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            background: var(--gradient-gold);
+            color: var(--dark);
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1.5s;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--white);
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 2s;
+        }
+
+        .scroll-text {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .scroll-arrow {
+            width: 24px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            position: relative;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .scroll-arrow::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 2px;
+            animation: scrollDot 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollDot {
+            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+            50% { transform: translateX(-50%) translateY(8px); opacity: 0.5; }
+        }
+
+        /* ========================================
+           OVERVIEW / STATS SECTION
+           ======================================== */
+        .overview {
+            padding: var(--section-padding) 0;
+            position: relative;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-normal);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl), var(--shadow-glow);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 600;
             color: var(--teal);
-            text-decoration: none;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+        }
+
+        @media (max-width: 1024px) {
+            .overview-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========================================
+           SECTION STYLES
+           ======================================== */
+        .section {
+            padding: var(--section-padding) 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--teal);
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(8, 145, 178, 0.1);
+            border-radius: 50px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 600;
+            color: var(--dark);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-accent);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--gray);
+        }
+
+        /* ========================================
+           DAY CARD STYLES
+           ======================================== */
+        .day-section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .day-section:nth-child(even) {
+            background: linear-gradient(180deg, transparent 0%, rgba(8, 145, 178, 0.03) 50%, transparent 100%);
+        }
+
+        .day-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .day-header.reverse {
+            grid-template-columns: 2fr 1fr;
+            direction: rtl;
+        }
+
+        .day-header.reverse > * {
+            direction: ltr;
+        }
+
+        .day-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .day-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, transparent 50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .day-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+
+        .day-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .day-badge {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: var(--gradient-gold);
+            color: var(--dark);
+            font-family: var(--font-display);
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            z-index: 2;
+            box-shadow: var(--shadow-md);
+        }
+
+        .day-content {
+            padding: 1rem 0;
+        }
+
+        .day-number {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .day-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 3vw, 2.75rem);
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .day-description {
+            font-size: 1.125rem;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 968px) {
+            .day-header,
+            .day-header.reverse {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                direction: ltr;
+            }
+            
+            .day-header.reverse > * {
+                direction: ltr;
+            }
+        }
+
+        /* ========================================
+           DETAILS GRID
+           ======================================== */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .detail-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg), var(--shadow-glow-teal);
+        }
+
+        .detail-card.featured {
+            background: linear-gradient(135deg, rgba(253, 248, 243, 0.95) 0%, rgba(245, 237, 227, 0.95) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .detail-card.featured:hover {
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+        }
+
+        .detail-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: var(--gradient-teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .detail-card.featured .detail-icon {
+            background: var(--gradient-gold);
+        }
+
+        .detail-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .detail-content {
+            font-size: 0.9375rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .detail-content strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .detail-content a {
+            color: var(--teal);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .detail-content a:hover {
+            color: var(--teal-dark);
+        }
+
+        .detail-list {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+
+        .detail-list li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.25rem 0.75rem;
+            background: rgba(8, 145, 178, 0.1);
+            color: var(--teal);
+            border-radius: 50px;
+            margin-bottom: 0.75rem;
+        }
+
+        .tag.gold {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-dark);
+        }
+
+        @media (max-width: 1024px) {
+            .details-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========================================
+           STORY BOX
+           ======================================== */
+        .story-box {
+            background: linear-gradient(135deg, rgba(245, 237, 227, 0.8) 0%, rgba(253, 248, 243, 0.9) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-left: 4px solid var(--gold);
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .story-box::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-family: var(--font-display);
+            font-size: 5rem;
+            color: var(--gold);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .story-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--gold-dark);
+            margin-bottom: 0.75rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .logo svg {
-            width: 28px;
-            height: 28px;
-        }
-
-        .nav {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
+        .story-text {
+            font-family: var(--font-accent);
+            font-size: 1.25rem;
+            font-style: italic;
             color: var(--dark);
-            font-weight: 500;
-            font-size: 0.9rem;
-            padding: 0.5rem 0;
+            line-height: 1.8;
             position: relative;
-            transition: color 0.3s;
+            z-index: 1;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--teal);
-            transition: width 0.3s;
+        /* ========================================
+           TIPS BOX
+           ======================================== */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
-        .nav-links a:hover {
-            color: var(--teal);
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(8, 145, 178, 0.05);
+            border-radius: 12px;
+            transition: all var(--transition-fast);
         }
 
-        .nav-links a:hover::after {
+        .tip-item:hover {
+            background: rgba(8, 145, 178, 0.1);
+            transform: translateX(5px);
+        }
+
+        .tip-icon {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border-radius: 10px;
+            background: rgba(8, 145, 178, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .tip-text {
+            font-size: 0.9375rem;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 640px) {
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========================================
+           PLACEHOLDER DAYS GRID
+           ======================================== */
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .day-preview {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .day-preview:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .day-preview img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
         }
 
-        .dates-badge {
-            background: var(--teal);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
+        .day-preview:hover img {
+            transform: scale(1.1);
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
+        .day-preview-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 30%, rgba(15, 23, 42, 0.9) 100%);
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--sand) 50%, var(--teal-soft) 100%);
-            position: relative;
-            padding: 6rem 2rem 4rem;
+            justify-content: flex-end;
+            padding: 1.5rem;
         }
 
-        .hero::before {
+        .day-preview-number {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            margin-bottom: 0.25rem;
+        }
+
+        .day-preview-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .day-preview-dates {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0.25rem;
+        }
+
+        @media (max-width: 1200px) {
+            .days-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .days-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .days-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+
+        .footer::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230891B2' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-        }
-
-        .hero-subtitle {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--teal);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 1rem;
-            line-height: 1.1;
-        }
-
-        .hero-title span {
-            color: var(--teal);
-        }
-
-        .hero-dates {
-            font-size: 1.25rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            justify-content: center;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--teal);
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin-top: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-
-        .scroll-indicator svg {
-            width: 32px;
-            height: 32px;
-            color: var(--teal);
-        }
-
-        /* Jours Container */
-        .days-container {
-            scroll-snap-type: y mandatory;
-            overflow-y: auto;
-            height: 100vh;
-        }
-
-        .day-section {
-            min-height: 100vh;
-            scroll-snap-align: start;
-            padding: 6rem 2rem 4rem;
-            position: relative;
-        }
-
-        .day-section:nth-child(even) {
-            background: var(--white);
-        }
-
-        .day-section:nth-child(odd) {
-            background: var(--cream);
-        }
-
-        .day-header {
-            max-width: 1200px;
-            margin: 0 auto 3rem;
-            display: flex;
-            align-items: baseline;
-            gap: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid var(--teal);
-        }
-
-        .day-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            font-weight: 700;
-            color: var(--teal);
-            line-height: 1;
-        }
-
-        .day-info {
-            flex: 1;
-        }
-
-        .day-date {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gray);
-            margin-bottom: 0.25rem;
-        }
-
-        .day-city {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .day-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--light-gray);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--teal-soft);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .card-icon svg {
-            width: 24px;
-            height: 24px;
-            color: var(--teal);
-        }
-
-        .card-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .card-content {
-            color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
-        .card-content strong {
-            color: var(--dark);
-            font-weight: 600;
-        }
-
-        .card-content p {
-            margin-bottom: 0.75rem;
-        }
-
-        .tag {
-            display: inline-block;
-            background: var(--teal-light);
-            color: var(--teal-dark);
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .tag.gold {
-            background: #FEF3C7;
-            color: #92400E;
-        }
-
-        .tag.green {
-            background: #D1FAE5;
-            color: #065F46;
-        }
-
-        /* Histoire Card */
-        .story-card {
-            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
-            color: white;
-            grid-column: 1 / -1;
-        }
-
-        .story-card .card-icon {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .story-card .card-icon svg {
-            color: white;
-        }
-
-        .story-card .card-title {
-            color: white;
-        }
-
-        .story-card .card-content {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            line-height: 1.9;
-            font-style: italic;
-        }
-
-        .story-card .card-content strong {
-            color: white;
-        }
-
-        /* Restaurant List */
-        .restaurant-list {
-            list-style: none;
-        }
-
-        .restaurant-item {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .restaurant-item:last-child {
-            border-bottom: none;
-        }
-
-        .restaurant-name {
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 0.25rem;
-        }
-
-        .restaurant-details {
-            font-size: 0.85rem;
-            color: var(--gray);
-        }
-
-        /* Tips List */
-        .tips-list {
-            list-style: none;
-        }
-
-        .tips-list li {
-            padding: 0.75rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .tips-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--teal);
-            font-weight: 600;
-        }
-
-        .tips-list li:last-child {
-            border-bottom: none;
-        }
-
-        /* Placeholder Days */
-        .day-placeholder {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 60vh;
-            text-align: center;
-        }
-
-        .placeholder-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--teal-soft);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .placeholder-icon svg {
-            width: 40px;
-            height: 40px;
-            color: var(--teal);
-        }
-
-        .placeholder-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .placeholder-text {
-            color: var(--gray);
-            font-size: 1.1rem;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark);
-            color: white;
-            padding: 4rem 2rem;
+            height: 4px;
+            background: var(--gradient-gold);
         }
 
         .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
         }
 
-        .footer-section h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            color: var(--teal);
+        .footer-brand {
+            max-width: 300px;
         }
 
-        .footer-section p,
-        .footer-section li {
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--gold);
+        }
+
+        .footer-tagline {
+            font-family: var(--font-accent);
+            font-size: 1.125rem;
+            font-style: italic;
             color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            line-height: 1.8;
+            line-height: 1.6;
         }
 
-        .footer-section ul {
+        .footer-title {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
             list-style: none;
         }
 
-        .footer-section li {
-            margin-bottom: 0.5rem;
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.7);
+            transition: color var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
         }
 
         .footer-bottom {
-            max-width: 1200px;
-            margin: 3rem auto 0;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
             color: rgba(255, 255, 255, 0.5);
-            font-size: 0.85rem;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                padding: 1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero-stats {
+        @media (max-width: 968px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
                 gap: 2rem;
             }
+        }
 
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .day-header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .day-number {
-                font-size: 3rem;
-            }
-
-            .day-city {
-                font-size: 1.75rem;
-            }
-
-            .day-content {
+        @media (max-width: 640px) {
+            .footer-content {
                 grid-template-columns: 1fr;
             }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
         }
 
-        /* Quick Nav */
-        .quick-nav {
-            position: fixed;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .quick-nav a {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--light-gray);
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .quick-nav a:hover,
-        .quick-nav a.active {
-            background: var(--teal);
-            transform: scale(1.3);
-        }
-
-        .quick-nav a::before {
-            content: attr(data-label);
+        /* ========================================
+           PARALLAX ELEMENTS
+           ======================================== */
+        .parallax-bg {
             position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--dark);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            white-space: nowrap;
-            opacity: 0;
+            width: 100%;
+            height: 120%;
+            top: -10%;
+            left: 0;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* Floating decorative elements */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
             pointer-events: none;
-            transition: opacity 0.3s;
         }
 
-        .quick-nav a:hover::before {
-            opacity: 1;
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--gold);
+            top: 10%;
+            right: -100px;
+            animation: float 8s ease-in-out infinite;
         }
 
-        @media (max-width: 1024px) {
-            .quick-nav {
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--teal);
+            bottom: 20%;
+            left: -100px;
+            animation: float 10s ease-in-out infinite 2s;
+        }
+
+        /* ========================================
+           RESTAURANT CARD SPECIAL
+           ======================================== */
+        .restaurant-card {
+            background: linear-gradient(135deg, rgba(8, 145, 178, 0.05) 0%, rgba(8, 145, 178, 0.02) 100%);
+            border: 1px solid rgba(8, 145, 178, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .restaurant-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .restaurant-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--gradient-teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .restaurant-title {
+            font-family: var(--font-display);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .restaurant-badge {
+            display: inline-block;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.25rem 0.5rem;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-dark);
+            border-radius: 4px;
+        }
+
+        /* ========================================
+           MAP LINK
+           ======================================== */
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--teal);
+            font-weight: 500;
+            margin-top: 0.5rem;
+            transition: all var(--transition-fast);
+        }
+
+        .map-link:hover {
+            color: var(--teal-dark);
+            gap: 0.75rem;
+        }
+
+        /* ========================================
+           MOBILE MENU
+           ======================================== */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: all var(--transition-fast);
+        }
+
+        .header.scrolled .mobile-menu-btn span {
+            background: var(--dark);
+        }
+
+        @media (max-width: 768px) {
+            .nav {
                 display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
     <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <a href="#" class="logo">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-                Voyage Israël 2026
-            </a>
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#" class="logo">Israël<span>Elite</span></a>
             <nav class="nav">
-                <ul class="nav-links">
-                    <li><a href="#day1">Itinéraire</a></li>
-                    <li><a href="#footer">Infos</a></li>
-                </ul>
-                <span class="dates-badge">1-15 Février 2026</span>
+                <a href="#jour1" class="nav-link">Itinéraire</a>
+                <a href="#experience" class="nav-link">Expérience</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </nav>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
-    <!-- Quick Nav -->
-    <nav class="quick-nav">
-        <a href="#hero" data-label="Accueil"></a>
-        <a href="#day1" data-label="Jour 1"></a>
-        <a href="#day2" data-label="Jour 2"></a>
-        <a href="#day3" data-label="Jour 3"></a>
-        <a href="#day4" data-label="Jour 4"></a>
-        <a href="#day5" data-label="Jour 5"></a>
-        <a href="#day7" data-label="Jour 7"></a>
-        <a href="#day8" data-label="Jour 8"></a>
-        <a href="#day10" data-label="Jour 10"></a>
-        <a href="#day11" data-label="Jour 11"></a>
-        <a href="#day15" data-label="Jour 15"></a>
+    <!-- Side Navigation -->
+    <nav class="side-nav" id="sideNav">
+        <a href="#hero" class="side-nav-item active" data-section="hero">
+            <span class="side-nav-label">Accueil</span>
+            <span class="side-nav-dot"></span>
+        </a>
+        <a href="#overview" class="side-nav-item" data-section="overview">
+            <span class="side-nav-label">Aperçu</span>
+            <span class="side-nav-dot"></span>
+        </a>
+        <a href="#jour1" class="side-nav-item" data-section="jour1">
+            <span class="side-nav-label">Jour 1</span>
+            <span class="side-nav-dot"></span>
+        </a>
+        <a href="#autres-jours" class="side-nav-item" data-section="autres-jours">
+            <span class="side-nav-label">Suite</span>
+            <span class="side-nav-dot"></span>
+        </a>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=1920&q=80" alt="Tel Aviv skyline" loading="eager">
+        </div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <p class="hero-subtitle">Voyage Privé</p>
-            <h1 class="hero-title">Israël <span>2026</span></h1>
-            <p class="hero-dates">1 — 15 Février 2026</p>
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-number">15</div>
-                    <div class="stat-label">Jours</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">8</div>
-                    <div class="stat-label">Destinations</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">∞</div>
-                    <div class="stat-label">Souvenirs</div>
-                </div>
-            </div>
+            <p class="hero-label">Voyage Privé sur Mesure</p>
+            <h1 class="hero-title">
+                <span class="hero-title-line">L'Israël</span>
+                <span class="hero-title-line">Authentique</span>
+            </h1>
+            <p class="hero-subtitle">15 jours d'exception, entre luxe, histoire et découvertes</p>
+            <a href="#jour1" class="hero-cta">
+                <span>Découvrir l'itinéraire</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
         </div>
         <div class="scroll-indicator">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+            <span class="scroll-text">Scroll</span>
+            <div class="scroll-arrow"></div>
         </div>
     </section>
 
-    <!-- JOUR 1 - TEL AVIV (Détaillé) -->
-    <section class="day-section" id="day1">
-        <div class="day-header">
-            <div class="day-number">01</div>
-            <div class="day-info">
-                <div class="day-date">Dimanche 1 Février 2026</div>
-                <h2 class="day-city">Tel Aviv — Arrivée & Neve Tzedek</h2>
+    <!-- Overview Section -->
+    <section class="overview" id="overview">
+        <div class="floating-shape shape-1"></div>
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Votre Aventure</span>
+                <h2 class="section-title">Un voyage conçu pour<br><span class="text-gradient">l'exception</span></h2>
+                <p class="section-subtitle">De Tel Aviv à Jérusalem, de la Mer Morte à Eilat — une immersion complète dans les trésors d'Israël</p>
+            </div>
+            
+            <div class="overview-grid">
+                <div class="stat-card animate-on-scroll delay-100">
+                    <div class="stat-number" data-count="15">0</div>
+                    <div class="stat-label">Jours</div>
+                </div>
+                <div class="stat-card animate-on-scroll delay-200">
+                    <div class="stat-number" data-count="8">0</div>
+                    <div class="stat-label">Destinations</div>
+                </div>
+                <div class="stat-card animate-on-scroll delay-300">
+                    <div class="stat-number" data-count="5">0</div>
+                    <div class="stat-label">Étoiles</div>
+                </div>
+                <div class="stat-card animate-on-scroll delay-400">
+                    <div class="stat-number" data-count="1">0</div>
+                    <div class="stat-label">Voyage</div>
+                </div>
             </div>
         </div>
-        
-        <div class="day-content">
-            <!-- Hébergement -->
-            <div class="card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                    </svg>
+    </section>
+
+    <!-- Day 1: Tel Aviv -->
+    <section class="day-section" id="jour1">
+        <div class="container">
+            <div class="day-header animate-on-scroll">
+                <div class="day-image">
+                    <span class="day-badge">Jour 1</span>
+                    <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=800&q=80" alt="Tel Aviv Neve Tzedek">
                 </div>
-                <h3 class="card-title">Hébergement</h3>
-                <div class="card-content">
-                    <p><strong>Elkonin Tel Aviv — MGallery Collection</strong> <span class="tag gold">★★★★★</span></p>
-                    <p>9 Lilienblum Street, Tel Aviv 6513113</p>
-                    <p>📞 +972 3-548-4000</p>
-                    <p>🌐 elkonintelaviv.com</p>
-                    <p style="margin-top: 1rem;">
-                        <span class="tag">Check-in 15h</span>
-                        <span class="tag">Check-out 11h</span>
+                <div class="day-content">
+                    <p class="day-number">Arrivée & Installation</p>
+                    <h2 class="day-title">Tel Aviv — <br><span class="text-gradient">Neve Tzedek</span></h2>
+                    <p class="day-description">Votre voyage commence dans le quartier historique de Neve Tzedek, berceau de Tel Aviv, où authenticité et élégance moderne se rencontrent.</p>
+                </div>
+            </div>
+
+            <div class="details-grid">
+                <!-- Hébergement -->
+                <div class="detail-card featured animate-on-scroll delay-100">
+                    <div class="detail-icon">🏨</div>
+                    <span class="tag gold">Hébergement</span>
+                    <h3 class="detail-title">Elkonin Tel Aviv</h3>
+                    <p class="detail-content">
+                        <strong>MGallery Collection ★★★★★</strong><br>
+                        9 Lilienblum Street, Tel Aviv 6513113<br>
+                        Tél: +972 3-548-4000<br>
+                        Check-in 15h / Check-out 11h<br>
+                        <a href="https://elkonintelaviv.com" target="_blank">elkonintelaviv.com</a>
+                    </p>
+                    <a href="https://maps.google.com/?q=Elkonin+Tel+Aviv" class="map-link" target="_blank">
+                        <span>Voir sur la carte</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Restaurant Principal -->
+                <div class="detail-card animate-on-scroll delay-200">
+                    <div class="detail-icon">🍽️</div>
+                    <span class="tag">Dîner</span>
+                    <h3 class="detail-title">Rova Alef</h3>
+                    <p class="detail-content">
+                        <strong>Chef Evytar Malka</strong><br>
+                        <span class="restaurant-badge">KASHER</span><br><br>
+                        📍 18 Yehoshua ha-Talmi St<br>
+                        📞 +972 53-550-0605<br>
+                        🕐 Dim-Jeu 18h-01h<br>
+                        🕐 Ven 12h30-15h30
+                    </p>
+                </div>
+
+                <!-- Tesla Supercharger -->
+                <div class="detail-card animate-on-scroll delay-300">
+                    <div class="detail-icon">⚡</div>
+                    <span class="tag">Recharge</span>
+                    <h3 class="detail-title">Tesla Supercharger</h3>
+                    <p class="detail-content">
+                        <strong>Azrieli Town</strong><br>
+                        📍 3 Aluf Kalman Magen St<br><br>
+                        • 8 bornes disponibles<br>
+                        • 250kW ultra-rapide<br>
+                        • Ouvert 24h/24<br>
+                        • ₪1.01/kWh
                     </p>
                 </div>
             </div>
 
-            <!-- Restaurant de l'hôtel -->
-            <div class="card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
-                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
-                        <line x1="6" y1="1" x2="6" y2="4"></line>
-                        <line x1="10" y1="1" x2="10" y2="4"></line>
-                        <line x1="14" y1="1" x2="14" y2="4"></line>
+            <!-- Story Box -->
+            <div class="story-box animate-on-scroll">
+                <span class="story-label">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                     </svg>
-                </div>
-                <h3 class="card-title">Restaurant de l'Hôtel</h3>
-                <div class="card-content">
-                    <p><strong>Rova Alef</strong> <span class="tag green">KASHER</span></p>
-                    <p>👨‍🍳 Chef Evytar Malka — Cuisine méditerranéenne</p>
-                    <p>📍 18 Yehoshua ha-Talmi St</p>
-                    <p>📞 +972 53-550-0605</p>
-                    <p style="margin-top: 1rem;">
-                        <span class="tag">Dim-Jeu: 18h-01h</span>
-                        <span class="tag">Ven: 12h30-15h30</span>
-                    </p>
+                    Une Histoire d'Exception
+                </span>
+                <p class="story-text">
+                    Neve Tzedek, fondé en 1887, fut le premier quartier juif hors des murs de Jaffa — 22 ans avant Tel Aviv ! La famille Elkonin faisait partie des 66 familles fondatrices. Leur maison de 1913 est aujourd'hui cet hôtel boutique rénové en 2022.
+                </p>
+            </div>
+
+            <!-- Conseils & Astuces -->
+            <div class="animate-on-scroll delay-200">
+                <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; color: var(--dark);">
+                    Conseils pour votre arrivée
+                </h3>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <div class="tip-icon">✈️</div>
+                        <div class="tip-text">
+                            <strong>Depuis l'aéroport</strong><br>
+                            30-45 min en taxi (~150₪)
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <div class="tip-icon">🚶</div>
+                        <div class="tip-text">
+                            <strong>Balade incontournable</strong><br>
+                            Rue Shabazi — art galleries & boutiques
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <div class="tip-icon">🌅</div>
+                        <div class="tip-text">
+                            <strong>Sunset</strong><br>
+                            Plage Alma ou port de Jaffa
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <div class="tip-icon">💰</div>
+                        <div class="tip-text">
+                            <strong>Pourboire</strong><br>
+                            10-12% dans les restaurants
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Autres Restaurants -->
-            <div class="card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+            <!-- Autres restaurants -->
+            <div class="detail-card animate-on-scroll" style="margin-top: 2rem;">
+                <span class="tag">Autres Options</span>
+                <h3 class="detail-title">Restaurants recommandés</h3>
+                <ul class="detail-list">
+                    <li><strong>Cafe Alma</strong> — 55 Shabazi St, ouvert jusqu'à 23h</li>
+                    <li><strong>Chacoli</strong> — 3 Herbert Samuel St (vue mer exceptionnelle)</li>
+                    <li><strong>Nina Cafe</strong> — 29 Shabazi St, 7h30-sunset</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Days Preview -->
+    <section class="section" id="autres-jours">
+        <div class="floating-shape shape-2"></div>
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">La Suite de l'Aventure</span>
+                <h2 class="section-title">Un itinéraire <br><span class="text-gradient">sur mesure</span></h2>
+                <p class="section-subtitle">Chaque jour révèle une nouvelle facette d'Israël — des ruines romaines aux paysages lunaires du désert</p>
+            </div>
+
+            <div class="days-grid">
+                <div class="day-preview animate-on-scroll delay-100">
+                    <img src="https://images.unsplash.com/photo-1562696271-058001281816?w=600&q=80" alt="Césarée">
+                    <div class="day-preview-overlay">
+                        <span class="day-preview-number">Jour 2</span>
+                        <h4 class="day-preview-title">Césarée</h4>
+                        <p class="day-preview-dates">Ruines romaines</p>
+                    </div>
+                </div>
+                
+                <div class="day-preview animate-on-scroll delay-200">
+                    <img src="https://images.unsplash.com/photo-1562696271-058001281816?w=600&q=80" alt="Haïfa">
+                    <div class="day-preview-overlay">
+                        <span class="day-preview-number">Jour 3</span>
+                        <h4 class="day-preview-title">Haïfa & Akko</h4>
+                        <p class="day-preview-dates">Jardins Bahá'í</p>
+                    </div>
+                </div>
+                
+                <div class="day-preview animate-on-scroll delay-300">
+                    <img src="https://images.unsplash.com/photo-1562696271-058001281816?w=600&q=80" alt="Tibériade">
+                    <div class="day-preview-overlay">
+                        <span class="day-preview-number">Jour 4</span>
+                        <h4 class="day-preview-title">Tibériade</h4>
+                        <p class="day-preview-dates">Lac de Galilée</p>
+                    </div>
+                </div>
+                
+                <div class="day-preview animate-on-scroll delay-400">
+                    <img src="https://images.unsplash.com/photo-1552423314-cf29ab68ad73?w=600&q=80" alt="Jérusalem">
+                    <div class="day-preview-overlay">
+                        <span class="day-preview-number">Jours 5-6</span>
+                        <h4 class="day-preview-title">Jérusalem</h4>
+                        <p class="day-preview-dates">Vieille Ville</p>
+                    </div>
+                </div>
+                
+                <div class="day-preview animate-on-scroll delay-100">
+                    <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=600&q=80" alt="Mer Morte">
+                    <div class="day-preview-overlay">
+                        <span class="day-preview-number">Jour 7</span>
+                        <h4 class="day-preview-title">Mer Morte</h4>
+                        <p class="day-preview-dates">& Massada</p>
+                    </div>
+                </div>
+                
+                <div class="day-preview animate-on-scroll delay-200">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Eilat">
+                    <div class="day-preview-overlay">
+                        <span class="day-preview-number">Jours 8-9</span>
+                        <h4 class="day-preview-title">Eilat</h4>
+                        <p class="day-preview-dates">Mer Rouge</p>
+                    </div>
+                </div>
+                
+                <div class="day-preview animate-on-scroll delay-300">
+                    <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=600&q=80" alt="Mitzpe Ramon">
+                    <div class="day-preview-overlay">
+                        <span class="day-preview-number">Jour 10</span>
+                        <h4 class="day-preview-title">Mitzpe Ramon</h4>
+                        <p class="day-preview-dates">Cratère</p>
+                    </div>
+                </div>
+                
+                <div class="day-preview animate-on-scroll delay-400">
+                    <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=600&q=80" alt="Tel Aviv">
+                    <div class="day-preview-overlay">
+                        <span class="day-preview-number">Jours 11-14</span>
+                        <h4 class="day-preview-title">Tel Aviv</h4>
+                        <p class="day-preview-dates">The Setai</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Départ -->
+            <div class="story-box animate-on-scroll" style="margin-top: 4rem; text-align: center; border-left: none; border-top: 4px solid var(--gold);">
+                <span class="story-label" style="justify-content: center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
                     </svg>
-                </div>
-                <h3 class="card-title">Autres Restaurants</h3>
-                <div class="card-content">
-                    <ul class="restaurant-list">
-                        <li class="restaurant-item">
-                            <div class="restaurant-name">Cafe Alma</div>
-                            <div class="restaurant-details">📍 55 Shabazi St • 🕐 Jusqu'à 23h</div>
-                        </li>
-                        <li class="restaurant-item">
-                            <div class="restaurant-name">Chacoli</div>
-                            <div class="restaurant-details">📍 3 Herbert Samuel St • 🌅 Vue mer</div>
-                        </li>
-                        <li class="restaurant-item">
-                            <div class="restaurant-name">Nina Cafe</div>
-                            <div class="restaurant-details">📍 29 Shabazi St • 🕐 7h30-coucher du soleil</div>
-                        </li>
-                    </ul>
-                </div>
+                    Jour 15 — Départ
+                </span>
+                <p class="story-text" style="font-size: 1.5rem;">
+                    Transfert aéroport Ben Gurion. À bientôt, Israël.
+                </p>
             </div>
-
-            <!-- Tesla Supercharger -->
-            <div class="card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
-                        <rect x="9" y="9" width="6" height="6"></rect>
-                        <line x1="9" y1="1" x2="9" y2="4"></line>
-                        <line x1="15" y1="1" x2="15" y2="4"></line>
-                        <line x1="9" y1="20" x2="9" y2="23"></line>
-                        <line x1="15" y1="20" x2="15" y2="23"></line>
-                    </svg>
-                </div>
-                <h3 class="card-title">Tesla Supercharger</h3>
-                <div class="card-content">
-                    <p><strong>Azrieli Town</strong></p>
-                    <p>📍 3 Aluf Kalman Magen St</p>
-                    <p style="margin-top: 1rem;">
-                        <span class="tag">8 bornes</span>
-                        <span class="tag">250kW</span>
-                        <span class="tag">24h/24</span>
-                        <span class="tag">₪1.01/kWh</span>
-                    </p>
-                </div>
-            </div>
-
-            <!-- Conseils -->
-            <div class="card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                    </svg>
-                </div>
-                <h3 class="card-title">Conseils du Jour</h3>
-                <div class="card-content">
-                    <ul class="tips-list">
-                        <li><strong>Aéroport → Hôtel:</strong> 30-45 min en taxi (~150₪)</li>
-                        <li><strong>Balade:</strong> Rue Shabazi pour galeries et boutiques</li>
-                        <li><strong>Coucher de soleil:</strong> Plage Alma ou port de Jaffa</li>
-                        <li><strong>Pourboire:</strong> 10-12% (souvent inclus)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Histoire -->
-            <div class="card story-card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                    </svg>
-                </div>
-                <h3 class="card-title">Histoire à Raconter</h3>
-                <div class="card-content">
-                    <p><strong>Neve Tzedek</strong>, fondé en <strong>1887</strong>, fut le premier quartier juif construit hors des murs de Jaffa — <strong>22 ans avant la création de Tel Aviv !</strong></p>
-                    <p style="margin-top: 1rem;">La famille Elkonin faisait partie des <strong>66 familles fondatrices</strong> de Tel Aviv en 1909. Leur maison de 1913 est aujourd'hui cet hôtel boutique exceptionnel, rénové en 2022, qui mêle histoire ottomane et luxe contemporain.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- JOUR 2 - CÉSARÉE -->
-    <section class="day-section" id="day2">
-        <div class="day-header">
-            <div class="day-number">02</div>
-            <div class="day-info">
-                <div class="day-date">Lundi 2 Février 2026</div>
-                <h2 class="day-city">Césarée</h2>
-            </div>
-        </div>
-        <div class="day-placeholder">
-            <div class="placeholder-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="8" x2="12" y2="12"></line>
-                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                </svg>
-            </div>
-            <h3 class="placeholder-title">Césarée</h3>
-            <p class="placeholder-text">Cette section sera complétée prochainement...</p>
-        </div>
-    </section>
-
-    <!-- JOUR 3 - HAÏFA/AKKO -->
-    <section class="day-section" id="day3">
-        <div class="day-header">
-            <div class="day-number">03</div>
-            <div class="day-info">
-                <div class="day-date">Mardi 3 Février 2026</div>
-                <h2 class="day-city">Haïfa & Akko</h2>
-            </div>
-        </div>
-        <div class="day-placeholder">
-            <div class="placeholder-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                    <path d="M2 17l10 5 10-5"></path>
-                    <path d="M2 12l10 5 10-5"></path>
-                </svg>
-            </div>
-            <h3 class="placeholder-title">Haïfa & Akko</h3>
-            <p class="placeholder-text">Cette section sera complétée prochainement...</p>
-        </div>
-    </section>
-
-    <!-- JOUR 4 - TIBÉRIADE -->
-    <section class="day-section" id="day4">
-        <div class="day-header">
-            <div class="day-number">04</div>
-            <div class="day-info">
-                <div class="day-date">Mercredi 4 Février 2026</div>
-                <h2 class="day-city">Tibériade & Lac de Galilée</h2>
-            </div>
-        </div>
-        <div class="day-placeholder">
-            <div class="placeholder-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                </svg>
-            </div>
-            <h3 class="placeholder-title">Tibériade</h3>
-            <p class="placeholder-text">Cette section sera complétée prochainement...</p>
-        </div>
-    </section>
-
-    <!-- JOUR 5 - JÉRUSALEM -->
-    <section class="day-section" id="day5">
-        <div class="day-header">
-            <div class="day-number">05</div>
-            <div class="day-info">
-                <div class="day-date">Jeudi 5 Février 2026</div>
-                <h2 class="day-city">Jérusalem — Jour 1</h2>
-            </div>
-        </div>
-        <div class="day-placeholder">
-            <div class="placeholder-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-            </div>
-            <h3 class="placeholder-title">Jérusalem</h3>
-            <p class="placeholder-text">Cette section sera complétée prochainement...</p>
-        </div>
-    </section>
-
-    <!-- JOUR 6 - JÉRUSALEM -->
-    <section class="day-section" id="day6">
-        <div class="day-header">
-            <div class="day-number">06</div>
-            <div class="day-info">
-                <div class="day-date">Vendredi 6 Février 2026</div>
-                <h2 class="day-city">Jérusalem — Jour 2</h2>
-            </div>
-        </div>
-        <div class="day-placeholder">
-            <div class="placeholder-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-            </div>
-            <h3 class="placeholder-title">Jérusalem — Jour 2</h3>
-            <p class="placeholder-text">Cette section sera complétée prochainement...</p>
-        </div>
-    </section>
-
-    <!-- JOUR 7 - MER MORTE -->
-    <section class="day-section" id="day7">
-        <div class="day-header">
-            <div class="day-number">07</div>
-            <div class="day-info">
-                <div class="day-date">Samedi 7 Février 2026</div>
-                <h2 class="day-city">Mer Morte & Massada</h2>
-            </div>
-        </div>
-        <div class="day-placeholder">
-            <div class="placeholder-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
-                </svg>
-            </div>
-            <h3 class="placeholder-title">Mer Morte</h3>
-            <p class="placeholder-text">Cette section sera complétée prochainement...</p>
-        </div>
-    </section>
-
-    <!-- JOUR 8 - EILAT -->
-    <section class="day-section" id="day8">
-        <div class="day-header">
-            <div class="day-number">08</div>
-            <div class="day-info">
-                <div class="day-date">Dimanche 8 Février 2026</div>
-                <h2 class="day-city">Eilat — Jour 1</h2>
-            </div>
-        </div>
-        <div class="day-placeholder">
-            <div class="placeholder-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-            </div>
-            <h3 class="placeholder-title">Eilat</h3>
-            <p class="placeholder-text">Cette section sera complétée prochainement...</p>
-        </div>
-    </section>
-
-    <!-- JOUR 9 - EILAT -->
-    <section class="day-section" id="day9">
-        <div class="day-header">
-            <div class="day-number">09</div>
-            <div class="day-info">
-                <div class="day-date">Lundi 9 Février 2026</div>
-                <h2 class="day-city">Eilat — Jour 2</h2>
-            </div>
-        </div>
-        <div class="day-placeholder">
-            <div class="placeholder-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-            </div>
-            <h3 class="placeholder-title">Eilat — Jour 2</h3>
-            <p class="placeholder-text">Cette section sera complétée prochainement...</p>
-        </div>
-    </section>
-
-    <!-- JOUR 10 - MITZPE RAMON -->
-    <section class="day-section" id="day10">
-        <div class="day-header">
-            <div class="day-number">10</div>
-            <div class="day-info">
-                <div class="day-date">Mardi 10 Février 2026</div>
-                <h2 class="day-city">Mitzpe Ramon & Cratère Ramon</h2>
-            </div>
-        </div>
-        <div class="day-placeholder">
-            <div class="placeholder-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 3l-9 9h6v9h6v-9h6z"></path>
-                </svg>
-            </div>
-            <h3 class="placeholder-title">Mitzpe Ramon</h3>
-            <p class="placeholder-text">Cette section sera complétée prochainement...</p>
-        </div>
-    </section>
-
-    <!-- JOUR 11 - TEL AVIV -->
-    <section class="day-section" id="day11">
-        <div class="day-header">
-            <div class="day-number">11</div>
-            <div class="day-info">
-                <div class="day-date">Mercredi 11 Février 2026</div>
-                <h2 class="day-city">Retour à Tel Aviv — Jour 1</h2>
-            </div>
-        </div>
-        <div class="day-placeholder">
-            <div class="placeholder-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-            </div>
-            <h3 class="placeholder-title">Tel Aviv</h3>
-            <p class="placeholder-text">Cette section sera complétée prochainement...</p>
-        </div>
-    </section>
-
-    <!-- JOUR 12 - TEL AVIV -->
-    <section class="day-section" id="day12">
-        <div class="day-header">
-            <div class="day-number">12</div>
-            <div class="day-info">
-                <div class="day-date">Jeudi 12 Février 2026</div>
-                <h2 class="day-city">Tel Aviv — Jour 2</h2>
-            </div>
-        </div>
-        <div class="day-placeholder">
-            <div class="placeholder-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-            </div>
-            <h3 class="placeholder-title">Tel Aviv — Jour 2</h3>
-            <p class="placeholder-text">Cette section sera complétée prochainement...</p>
-        </div>
-    </section>
-
-    <!-- JOUR 13 - TEL AVIV -->
-    <section class="day-section" id="day13">
-        <div class="day-header">
-            <div class="day-number">13</div>
-            <div class="day-info">
-                <div class="day-date">Vendredi 13 Février 2026</div>
-                <h2 class="day-city">Tel Aviv — Jour 3</h2>
-            </div>
-        </div>
-        <div class="day-placeholder">
-            <div class="placeholder-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-            </div>
-            <h3 class="placeholder-title">Tel Aviv — Jour 3</h3>
-            <p class="placeholder-text">Cette section sera complétée prochainement...</p>
-        </div>
-    </section>
-
-    <!-- JOUR 14 - TEL AVIV -->
-    <section class="day-section" id="day14">
-        <div class="day-header">
-            <div class="day-number">14</div>
-            <div class="day-info">
-                <div class="day-date">Samedi 14 Février 2026</div>
-                <h2 class="day-city">Tel Aviv — Dernier jour</h2>
-            </div>
-        </div>
-        <div class="day-placeholder">
-            <div class="placeholder-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg>
-            </div>
-            <h3 class="placeholder-title">Tel Aviv — Saint-Valentin 💕</h3>
-            <p class="placeholder-text">Cette section sera complétée prochainement...</p>
-        </div>
-    </section>
-
-    <!-- JOUR 15 - DÉPART -->
-    <section class="day-section" id="day15">
-        <div class="day-header">
-            <div class="day-number">15</div>
-            <div class="day-info">
-                <div class="day-date">Dimanche 15 Février 2026</div>
-                <h2 class="day-city">Départ</h2>
-            </div>
-        </div>
-        <div class="day-placeholder">
-            <div class="placeholder-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                </svg>
-            </div>
-            <h3 class="placeholder-title">Au revoir Israël 👋</h3>
-            <p class="placeholder-text">Transfert aéroport et vol retour...</p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer" id="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Voyage Israël 2026</h3>
-                <p>Un voyage de 15 jours à travers les plus belles destinations d'Israël, du nord au sud.</p>
-                <p style="margin-top: 1rem;"><strong>Dates:</strong> 1-15 Février 2026</p>
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">Israël<span>Elite</span></div>
+                    <p class="footer-tagline">Voyages d'exception en Terre Sainte, conçus pour les âmes en quête d'authenticité.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Itinéraire</h4>
+                    <ul class="footer-links">
+                        <li><a href="#jour1">Tel Aviv</a></li>
+                        <li><a href="#autres-jours">Jérusalem</a></li>
+                        <li><a href="#autres-jours">Mer Morte</a></li>
+                        <li><a href="#autres-jours">Eilat</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Hébergements 5★</a></li>
+                        <li><a href="#">Restaurants</a></li>
+                        <li><a href="#">Transport</a></li>
+                        <li><a href="#">Conciergerie</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">+33 1 23 45 67 89</a></li>
+                        <li><a href="#">voyage@israel-elite.com</a></li>
+                        <li><a href="#">Paris • Tel Aviv</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Itinéraire</h3>
-                <ul>
-                    <li>Tel Aviv • Césarée</li>
-                    <li>Haïfa • Akko • Tibériade</li>
-                    <li>Jérusalem • Mer Morte</li>
-                    <li>Eilat • Mitzpe Ramon</li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Israël Elite. Tous droits réservés.</p>
+                <p>Voyage privé sur mesure</p>
             </div>
-            <div class="footer-section">
-                <h3>Infos Utiles</h3>
-                <ul>
-                    <li>Monnaie: Shekel (₪)</li>
-                    <li>Langue: Hébreu, Arabe, Anglais</li>
-                    <li>Prise électrique: Type C/H</li>
-                    <li>Décalage horaire: UTC+2</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>✨ Bon voyage ! ✨</p>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script>
-        // Navigation active
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.quick-nav a');
-
-        function updateActiveNav() {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (scrollY >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', updateActiveNav);
-        updateActiveNav();
-
-        // Header shadow on scroll
-        const header = document.querySelector('.header');
-        window.addEventListener('scroll', () => {
+        // ========================================
+        // HEADER SCROLL EFFECT
+        // ========================================
+        const header = document.getElementById('header');
+        const progressBar = document.getElementById('progressBar');
+        
+        window.addEventListener('scroll', { passive: true }, () => {
+            // Header glassmorphism effect
             if (window.scrollY > 100) {
-                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+                header.classList.add('scrolled');
             } else {
-                header.style.boxShadow = 'none';
+                header.classList.remove('scrolled');
             }
+            
+            // Progress bar
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
         });
 
-        // Smooth scroll for anchor links
+        // ========================================
+        // INTERSECTION OBSERVER FOR ANIMATIONS
+        // ========================================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Counter animation
+                    if (entry.target.querySelector('.stat-number')) {
+                        animateCounter(entry.target.querySelector('.stat-number'));
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ========================================
+        // COUNTER ANIMATION
+        // ========================================
+        function animateCounter(element) {
+            const target = parseInt(element.dataset.count);
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += step;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            };
+            
+            updateCounter();
+        }
+
+        // ========================================
+        // SIDE NAVIGATION ACTIVE STATE
+        // ========================================
+        const sections = document.querySelectorAll('section[id]');
+        const sideNavItems = document.querySelectorAll('.side-nav-item');
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    sideNavItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.dataset.section === id) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        sections.forEach(section => sectionObserver.observe(section));
+
+        // ========================================
+        // SMOOTH SCROLL FOR NAV LINKS
+        // ========================================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1225,6 +1827,25 @@
                     });
                 }
             });
+        });
+
+        // ========================================
+        // PARALLAX EFFECT ON HERO
+        // ========================================
+        const heroImage = document.querySelector('.hero-bg img');
+        
+        window.addEventListener('scroll', { passive: true }, () => {
+            const scrolled = window.pageYOffset;
+            if (heroImage && scrolled < window.innerHeight) {
+                heroImage.style.transform = `scale(1.1) translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // ========================================
+        // PRELOAD HERO IMAGE
+        // ========================================
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
         });
     </script>
 </body>
