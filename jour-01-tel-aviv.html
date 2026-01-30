@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 1 - Tel Aviv | Voyage Israël</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0891B2;
+            --primary-light: #22D3EE;
+            --primary-dark: #0E7490;
+            --gold: #D4AF37;
+            --bg: #FAFAFA;
+            --text: #1F2937;
+            --text-light: #6B7280;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .page {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            min-height: 100vh;
+            box-shadow: 0 0 40px rgba(0,0,0,0.1);
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 40px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .day-badge {
+            background: var(--white);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .date {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .city-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .city-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        /* Content */
+        .content {
+            padding: 40px 50px;
+        }
+        
+        /* Section */
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .section-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--white);
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .card:hover {
+            box-shadow: 0 8px 24px rgba(8, 145, 178, 0.12);
+            border-color: var(--primary-light);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .card-subtitle {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+        
+        .card-badge {
+            background: linear-gradient(135deg, var(--gold) 0%, #F59E0B 100%);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .card-badge.kosher {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+        }
+        
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .info-icon {
+            width: 32px;
+            height: 32px;
+            background: #F3F4F6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        .info-content {
+            flex: 1;
+        }
+        
+        .info-label {
+            font-size: 11px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+        
+        .info-value {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text);
+        }
+        
+        .info-value a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .info-value a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Full width info */
+        .info-full {
+            grid-column: 1 / -1;
+        }
+        
+        /* Highlight box */
+        .highlight-box {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 16px;
+        }
+        
+        .highlight-icon {
+            font-size: 24px;
+        }
+        
+        .highlight-text {
+            font-size: 13px;
+            color: #92400E;
+        }
+        
+        .highlight-text strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+        
+        /* Tesla Supercharger */
+        .tesla-box {
+            background: linear-gradient(135deg, #1F2937 0%, #374151 100%);
+            border-radius: 12px;
+            padding: 20px;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .tesla-logo {
+            width: 48px;
+            height: 48px;
+            background: #E31937;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .tesla-info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .tesla-info p {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+        
+        .tesla-info .address {
+            margin-top: 8px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        
+        .tesla-specs {
+            display: flex;
+            gap: 16px;
+            margin-top: 10px;
+        }
+        
+        .tesla-spec {
+            background: rgba(255,255,255,0.1);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+        }
+        
+        /* Tips */
+        .tips-list {
+            list-style: none;
+        }
+        
+        .tips-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #F3F4F6;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+        }
+        
+        .tips-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .tip-icon {
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #F9FAFB;
+            padding: 24px 50px;
+            border-top: 1px solid #E5E7EB;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-nav {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .footer-btn {
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .footer-info {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header, .content, .footer {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            
+            .city-name {
+                font-size: 36px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            .page {
+                box-shadow: none;
+            }
+            
+            .card:hover {
+                box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top">
+                <span class="day-badge">Jour 1</span>
+                <span class="date">📅 Samedi 1er Février 2026</span>
+            </div>
+            <h1 class="city-name">Tel Aviv</h1>
+            <p class="city-subtitle">🌊 La ville qui ne dort jamais • Arrivée & Installation</p>
+        </header>
+        
+        <!-- Content -->
+        <main class="content">
+            <!-- Hébergement -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">🏨</div>
+                    <h2 class="section-title">Hébergement</h2>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Elkonin Tel Aviv – MGallery Collection</h3>
+                            <p class="card-subtitle">Hôtel boutique 5★ • Neve Tzedek</p>
+                        </div>
+                        <span class="card-badge">★ Premium</span>
+                    </div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <div class="info-label">Adresse</div>
+                                <div class="info-value">9 Lilienblum Street<br>Tel Aviv-Yafo 6513113</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <div class="info-label">Téléphone</div>
+                                <div class="info-value"><a href="tel:+97235484000">+972 3-548-4000</a></div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">🕐</div>
+                            <div class="info-content">
+                                <div class="info-label">Check-in / Check-out</div>
+                                <div class="info-value">15h00 / 11h00</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">🌐</div>
+                            <div class="info-content">
+                                <div class="info-label">Site Web</div>
+                                <div class="info-value"><a href="https://elkonintelaviv.com" target="_blank">elkonintelaviv.com</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <span class="highlight-icon">✨</span>
+                        <div class="highlight-text">
+                            <strong>Le petit plus</strong>
+                            Bâtiment historique de 1913, rénové en 2022. Situé au cœur du quartier bohème de Neve Tzedek, à 5 min à pied de Rothschild Boulevard et des plages.
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Restaurant de l'hôtel -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">🍽️</div>
+                    <h2 class="section-title">Restaurant de l'Hôtel</h2>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Rova Alef</h3>
+                            <p class="card-subtitle">Cuisine méditerranéenne raffinée • Chef Evytar Malka</p>
+                        </div>
+                        <span class="card-badge kosher">✓ Kasher</span>
+                    </div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <div class="info-label">Adresse</div>
+                                <div class="info-value">18 Yehoshua ha-Talmi St<br>(dans l'hôtel Elkonin)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <div class="info-label">Réservation</div>
+                                <div class="info-value"><a href="tel:+972535500605">+972 53-550-0605</a></div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item info-full">
+                            <div class="info-icon">🕐</div>
+                            <div class="info-content">
+                                <div class="info-label">Horaires</div>
+                                <div class="info-value">
+                                    Dim–Jeu : 18h00–01h00 • Ven : 12h30–15h30 • Sam : Fermé
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <span class="highlight-icon">💡</span>
+                        <div class="highlight-text">
+                            <strong>Réservation recommandée</strong>
+                            Restaurant intime avec cuisine ouverte et terrasse. Spécialités poissons et légumes méditerranéens. Supervision rabbinique Tel Aviv.
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Restaurants recommandés -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">🌟</div>
+                    <h2 class="section-title">Restaurants Recommandés</h2>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Cafe Alma Neve Tzedek</h3>
+                            <p class="card-subtitle">Brunch israélien • Quartier Neve Tzedek</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <div class="info-label">Adresse</div>
+                                <div class="info-value">55 Shabazi Street, Neve Tzedek</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">🕐</div>
+                            <div class="info-content">
+                                <div class="info-label">Horaires</div>
+                                <div class="info-value">Jusqu'à 23h00 • Happy Hour 16h–21h</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Chacoli</h3>
+                            <p class="card-subtitle">Tapas espagnoles & Fruits de mer • Front de mer</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <div class="info-label">Adresse</div>
+                                <div class="info-value">3 Herbert Samuel Street, Tel Aviv</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">🌐</div>
+                            <div class="info-content">
+                                <div class="info-label">Style</div>
+                                <div class="info-value">Sashimi, carpaccio, tapas • Terrasse vue mer</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Nina Cafe</h3>
+                            <p class="card-subtitle">Café de spécialité • Shabazi Street</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <div class="info-label">Adresse</div>
+                                <div class="info-value">29 Shabazi Street, Neve Tzedek</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">🕐</div>
+                            <div class="info-content">
+                                <div class="info-label">Horaires</div>
+                                <div class="info-value">Dim–Ven : 7h30–coucher du soleil<br>Sam : à partir de 9h15</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Tesla Supercharger -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">⚡</div>
+                    <h2 class="section-title">Recharge Tesla</h2>
+                </div>
+                
+                <div class="tesla-box">
+                    <div class="tesla-logo">T</div>
+                    <div class="tesla-info">
+                        <h4>Supercharger Azrieli Town</h4>
+                        <p>8 bornes disponibles • 250 kW max • 24h/24</p>
+                        <p class="address">📍 3 Aluf Kalman Magen St, Tel Aviv-Yafo</p>
+                        <div class="tesla-specs">
+                            <span class="tesla-spec">₪1.01/kWh</span>
+                            <span class="tesla-spec">V3 Stalls</span>
+                            <span class="tesla-spec">Parking couvert</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Tips -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">💡</div>
+                    <h2 class="section-title">Conseils du Jour</h2>
+                </div>
+                
+                <ul class="tips-list">
+                    <li>
+                        <span class="tip-icon">✈️</span>
+                        <span><strong>Arrivée Ben Gourion :</strong> Comptez 30–45 min en taxi/Uber jusqu'à l'hôtel (~150-180₪)</span>
+                    </li>
+                    <li>
+                        <span class="tip-icon">🚶</span>
+                        <span><strong>Neve Tzedek :</strong> Quartier piéton idéal pour une balade digestive. Boutiques, galeries et architecture ottomane</span>
+                    </li>
+                    <li>
+                        <span class="tip-icon">🌅</span>
+                        <span><strong>Coucher de soleil :</strong> Direction la plage Alma (5 min à pied) ou le port de Jaffa pour des vues spectaculaires</span>
+                    </li>
+                    <li>
+                        <span class="tip-icon">💳</span>
+                        <span><strong>Paiement :</strong> Cartes acceptées partout. Pourboire 10-12% au restaurant (souvent inclus)</span>
+                    </li>
+                </ul>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-info">
+                Voyage Israël • 1–15 Février 2026 • Préparé avec ❤️
+            </div>
+            <div class="footer-nav">
+                <a href="jour-02-cesaree.html" class="footer-btn">
+                    Jour 2 →
+                </a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

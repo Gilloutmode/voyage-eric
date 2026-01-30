@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voyage Israël 2026 | 1-15 Février</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal: #0891B2;
+            --teal-dark: #0E7490;
+            --teal-light: #22D3EE;
+            --gold: #D4AF37;
+            --cream: #FEF3C7;
+            --text: #1F2937;
+            --text-light: #6B7280;
+            --bg: #FAFAFA;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--teal);
+        }
+        
+        .logo span {
+            color: var(--gold);
+        }
+        
+        nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            max-width: 70%;
+        }
+        
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background: var(--teal);
+            color: white;
+        }
+        
+        /* Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 800px;
+            height: 800px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        
+        .hero .subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+        
+        .hero .dates {
+            font-size: 18px;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+        
+        .hero .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        
+        /* Day Section */
+        .day-section {
+            min-height: 100vh;
+            padding: 120px 40px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .day-badge {
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+        }
+        
+        .day-badge .num {
+            font-size: 32px;
+            line-height: 1;
+        }
+        
+        .day-badge .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .day-title {
+            flex: 1;
+        }
+        
+        .day-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--teal-dark);
+        }
+        
+        .day-title .tagline {
+            font-size: 18px;
+            color: var(--text-light);
+        }
+        
+        .day-date {
+            text-align: right;
+            color: var(--text-light);
+        }
+        
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(8, 145, 178, 0.15);
+        }
+        
+        .card.full {
+            grid-column: 1 / -1;
+        }
+        
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--teal-light), var(--teal));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--teal-dark);
+            margin-bottom: 4px;
+        }
+        
+        .card .subtitle {
+            font-size: 14px;
+            color: var(--teal);
+            margin-bottom: 16px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #10B981;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .badge.gold {
+            background: linear-gradient(135deg, var(--gold), #F59E0B);
+        }
+        
+        /* Info List */
+        .info-list {
+            list-style: none;
+        }
+        
+        .info-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #F3F4F6;
+            font-size: 14px;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list .icon {
+            width: 32px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .info-list a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+        
+        .info-list a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Story Box */
+        .story-box {
+            background: linear-gradient(135deg, var(--cream), #FDE68A);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 16px;
+        }
+        
+        .story-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: #92400E;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .story-box p {
+            font-size: 15px;
+            color: #78350F;
+            line-height: 1.7;
+        }
+        
+        /* Restaurant Grid */
+        .resto-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .resto-card {
+            background: #F9FAFB;
+            border-radius: 12px;
+            padding: 16px;
+        }
+        
+        .resto-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .resto-card .type {
+            font-size: 12px;
+            color: var(--teal);
+            margin-bottom: 8px;
+        }
+        
+        .resto-card .detail {
+            font-size: 12px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 4px;
+        }
+        
+        /* Tesla Box */
+        .tesla-box {
+            background: linear-gradient(135deg, #1F2937, #374151);
+            border-radius: 16px;
+            padding: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .tesla-logo {
+            width: 56px;
+            height: 56px;
+            background: #E31937;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .tesla-info h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .tesla-info p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .tesla-specs {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .tesla-spec {
+            background: rgba(255,255,255,0.15);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+        
+        /* Tips Grid */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .tip {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px;
+            background: #F9FAFB;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        
+        .tip-icon {
+            font-size: 20px;
+        }
+        
+        .tip strong {
+            color: var(--teal-dark);
+        }
+        
+        /* Placeholder Day */
+        .placeholder-content {
+            text-align: center;
+            padding: 60px 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        
+        .placeholder-content .emoji {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .placeholder-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--teal-dark);
+            margin-bottom: 12px;
+        }
+        
+        .placeholder-content p {
+            color: var(--text-light);
+            font-size: 16px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--teal-dark);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        footer h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+        
+        footer p {
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+        
+        footer .credit {
+            font-size: 13px;
+            opacity: 0.6;
+            margin-top: 40px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resto-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .day-title h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Israël <span>2026</span></div>
+        <nav>
+            <a href="#jour1" class="active">Tel Aviv</a>
+            <a href="#jour2">Césarée</a>
+            <a href="#jour3">Haïfa</a>
+            <a href="#jour4">Tibériade</a>
+            <a href="#jour5">Jérusalem</a>
+            <a href="#jour7">Mer Morte</a>
+            <a href="#jour8">Eilat</a>
+            <a href="#jour10">Mitzpe Ramon</a>
+            <a href="#jour11">Tel Aviv</a>
+        </nav>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Israël</h1>
+        <p class="subtitle">Un voyage entre histoire millénaire et modernité</p>
+        <p class="dates">🗓️ 1 – 15 Février 2026 • 15 jours d'aventure</p>
+        <div class="scroll-hint">👇</div>
+    </section>
+    
+    <!-- JOUR 1 - TEL AVIV -->
+    <section class="day-section" id="jour1">
+        <div class="day-header">
+            <div class="day-badge">
+                <span class="num">1</span>
+                <span class="label">Jour</span>
+            </div>
+            <div class="day-title">
+                <h2>Tel Aviv</h2>
+                <p class="tagline">🌊 La ville qui ne dort jamais • Arrivée & Installation</p>
+            </div>
+            <div class="day-date">
+                <strong>Samedi</strong><br>
+                1er Février
+            </div>
+        </div>
+        
+        <div class="content-grid">
+            <!-- Hébergement -->
+            <div class="card">
+                <div class="card-icon">🏨</div>
+                <h3>Elkonin Tel Aviv <span class="badge gold">★★★★★</span></h3>
+                <p class="subtitle">MGallery Collection • Neve Tzedek</p>
+                <ul class="info-list">
+                    <li><span class="icon">📍</span> 9 Lilienblum Street, Tel Aviv 6513113</li>
+                    <li><span class="icon">📞</span> <a href="tel:+97235484000">+972 3-548-4000</a></li>
+                    <li><span class="icon">🕐</span> Check-in 15h00 / Check-out 11h00</li>
+                    <li><span class="icon">🌐</span> <a href="https://elkonintelaviv.com" target="_blank">elkonintelaviv.com</a></li>
+                </ul>
+            </div>
+            
+            <!-- Restaurant Hôtel -->
+            <div class="card">
+                <div class="card-icon">🍽️</div>
+                <h3>Rova Alef <span class="badge">✓ Kasher</span></h3>
+                <p class="subtitle">Cuisine méditerranéenne • Chef Evytar Malka</p>
+                <ul class="info-list">
+                    <li><span class="icon">📍</span> 18 Yehoshua ha-Talmi St (dans l'hôtel)</li>
+                    <li><span class="icon">📞</span> <a href="tel:+972535500605">+972 53-550-0605</a></li>
+                    <li><span class="icon">🕐</span> Dim-Jeu 18h-01h • Ven 12h30-15h30</li>
+                    <li><span class="icon">💡</span> Réservation recommandée</li>
+                </ul>
+            </div>
+            
+            <!-- Autres Restaurants -->
+            <div class="card full">
+                <div class="card-icon">⭐</div>
+                <h3>Autres restaurants recommandés</h3>
+                <div class="resto-grid">
+                    <div class="resto-card">
+                        <h4>Cafe Alma</h4>
+                        <p class="type">Brunch israélien culte</p>
+                        <p class="detail">📍 55 Shabazi Street</p>
+                        <p class="detail">🕐 Jusqu'à 23h • Happy Hour 16h-21h</p>
+                        <p class="detail">✨ Shakshuka légendaire, ambiance jazz</p>
+                    </div>
+                    <div class="resto-card">
+                        <h4>Chacoli</h4>
+                        <p class="type">Tapas & Fruits de mer</p>
+                        <p class="detail">📍 3 Herbert Samuel Street</p>
+                        <p class="detail">🌊 Terrasse face à la mer</p>
+                        <p class="detail">✨ Chef Guy Gamzu, saveurs basques</p>
+                    </div>
+                    <div class="resto-card">
+                        <h4>Nina Cafe</h4>
+                        <p class="type">Meilleur café de TLV</p>
+                        <p class="detail">📍 29 Shabazi Street</p>
+                        <p class="detail">🕐 7h30 – coucher du soleil</p>
+                        <p class="detail">✨ Torréfaction artisanale</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tesla -->
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Recharge Tesla</h3>
+                <div class="tesla-box">
+                    <div class="tesla-logo">T</div>
+                    <div class="tesla-info">
+                        <h4>Supercharger Azrieli Town</h4>
+                        <p>📍 3 Aluf Kalman Magen St, Tel Aviv</p>
+                        <div class="tesla-specs">
+                            <span class="tesla-spec">8 bornes</span>
+                            <span class="tesla-spec">250 kW</span>
+                            <span class="tesla-spec">24h/24</span>
+                            <span class="tesla-spec">₪1.01/kWh</span>
+                        </div>
+                    </div>
+                </div>
+                <p style="font-size: 13px; color: var(--text-light); margin-top: 12px;">
+                    💡 Premier Supercharger V3 d'Israël ! Profitez de la vue panoramique depuis la tour Azrieli (49e étage).
+                </p>
+            </div>
+            
+            <!-- Conseils -->
+            <div class="card">
+                <div class="card-icon">💡</div>
+                <h3>Conseils pratiques</h3>
+                <div class="tips-grid">
+                    <div class="tip">
+                        <span class="tip-icon">✈️</span>
+                        <span><strong>Aéroport → Hôtel</strong><br>30-45 min en taxi (~150₪) ou Gett/Uber</span>
+                    </div>
+                    <div class="tip">
+                        <span class="tip-icon">🚶</span>
+                        <span><strong>Balade</strong><br>Rue Shabazi : galeries, boutiques, cafés</span>
+                    </div>
+                    <div class="tip">
+                        <span class="tip-icon">🌅</span>
+                        <span><strong>Coucher de soleil</strong><br>Plage Alma ou vieux port de Jaffa</span>
+                    </div>
+                    <div class="tip">
+                        <span class="tip-icon">💳</span>
+                        <span><strong>Pourboire</strong><br>10-12% au restaurant (souvent inclus)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Histoire -->
+            <div class="card full">
+                <div class="card-icon">📖</div>
+                <h3>L'histoire du quartier</h3>
+                <div class="story-box">
+                    <h4>✨ Neve Tzedek : Le berceau de Tel Aviv</h4>
+                    <p>
+                        Fondé en 1887, <strong>Neve Tzedek</strong> ("Oasis de Justice") fut le premier quartier juif construit hors des murs de Jaffa — <strong>22 ans avant la création de Tel Aviv</strong> ! 
+                        <br><br>
+                        La famille Elkonin faisait partie des <strong>66 familles fondatrices</strong> de Tel Aviv en 1909. Leur élégante maison de 1913, au style ottoman-éclectique, est aujourd'hui l'hôtel boutique où vous séjournez. Rénové en 2022, il mêle avec brio <strong>histoire centenaire et luxe contemporain</strong>.
+                        <br><br>
+                        Flâner dans les ruelles pavées de Neve Tzedek, c'est marcher sur les traces des pionniers qui ont rêvé, puis bâti, la première ville hébraïque moderne.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- JOUR 2 - CÉSARÉE -->
+    <section class="day-section" id="jour2">
+        <div class="day-header">
+            <div class="day-badge">
+                <span class="num">2</span>
+                <span class="label">Jour</span>
+            </div>
+            <div class="day-title">
+                <h2>Césarée</h2>
+                <p class="tagline">🏛️ Splendeurs romaines sur la Méditerranée</p>
+            </div>
+            <div class="day-date">
+                <strong>Dimanche</strong><br>
+                2 Février
+            </div>
+        </div>
+        <div class="placeholder-content">
+            <div class="emoji">🏛️</div>
+            <h3>Route : Herzliya → Zikhron Yaakov → Césarée</h3>
+            <p>Hôtel : Dan Caesarea • Contenu détaillé à venir</p>
+        </div>
+    </section>
+    
+    <!-- JOUR 3 - HAÏFA / AKKO -->
+    <section class="day-section" id="jour3">
+        <div class="day-header">
+            <div class="day-badge">
+                <span class="num">3</span>
+                <span class="label">Jour</span>
+            </div>
+            <div class="day-title">
+                <h2>Haïfa & Akko</h2>
+                <p class="tagline">🌺 Jardins suspendus et cité des Croisés</p>
+            </div>
+            <div class="day-date">
+                <strong>Lundi</strong><br>
+                3 Février
+            </div>
+        </div>
+        <div class="placeholder-content">
+            <div class="emoji">🌺</div>
+            <h3>Les jardins Bahá'í • La vieille ville d'Akko</h3>
+            <p>Hôtel : Galei Kinneret (Tibériade) • Contenu détaillé à venir</p>
+        </div>
+    </section>
+    
+    <!-- JOUR 4 - TIBÉRIADE -->
+    <section class="day-section" id="jour4">
+        <div class="day-header">
+            <div class="day-badge">
+                <span class="num">4</span>
+                <span class="label">Jour</span>
+            </div>
+            <div class="day-title">
+                <h2>Galilée & Golan</h2>
+                <p class="tagline">⛰️ Paysages bibliques et hauteurs stratégiques</p>
+            </div>
+            <div class="day-date">
+                <strong>Mardi</strong><br>
+                4 Février
+            </div>
+        </div>
+        <div class="placeholder-content">
+            <div class="emoji">⛰️</div>
+            <h3>Lac de Tibériade • Plateau du Golan</h3>
+            <p>Hôtel : Galei Kinneret • Contenu détaillé à venir</p>
+        </div>
+    </section>
+    
+    <!-- JOURS 5-6 - JÉRUSALEM -->
+    <section class="day-section" id="jour5">
+        <div class="day-header">
+            <div class="day-badge" style="background: linear-gradient(135deg, var(--gold), #F59E0B);">
+                <span class="num">5-6</span>
+                <span class="label">Jours</span>
+            </div>
+            <div class="day-title">
+                <h2>Jérusalem</h2>
+                <p class="tagline">✡️ La ville trois fois sainte</p>
+            </div>
+            <div class="day-date">
+                <strong>Mer-Jeu</strong><br>
+                5-6 Février
+            </div>
+        </div>
+        <div class="placeholder-content">
+            <div class="emoji">✡️</div>
+            <h3>Vieille ville • Mur Occidental • Mont des Oliviers</h3>
+            <p>Hôtel : Isrotel Orient • Contenu détaillé à venir</p>
+        </div>
+    </section>
+    
+    <!-- JOUR 7 - MER MORTE -->
+    <section class="day-section" id="jour7">
+        <div class="day-header">
+            <div class="day-badge">
+                <span class="num">7</span>
+                <span class="label">Jour</span>
+            </div>
+            <div class="day-title">
+                <h2>Mer Morte & Massada</h2>
+                <p class="tagline">🏜️ Le point le plus bas de la Terre</p>
+            </div>
+            <div class="day-date">
+                <strong>Vendredi</strong><br>
+                7 Février
+            </div>
+        </div>
+        <div class="placeholder-content">
+            <div class="emoji">🏜️</div>
+            <h3>Forteresse de Massada • Flottaison en Mer Morte</h3>
+            <p>Hôtel : Isrotel Kayma • Contenu détaillé à venir</p>
+        </div>
+    </section>
+    
+    <!-- JOURS 8-9 - EILAT -->
+    <section class="day-section" id="jour8">
+        <div class="day-header">
+            <div class="day-badge">
+                <span class="num">8-9</span>
+                <span class="label">Jours</span>
+            </div>
+            <div class="day-title">
+                <h2>Eilat</h2>
+                <p class="tagline">🐠 Paradis balnéaire sur la Mer Rouge</p>
+            </div>
+            <div class="day-date">
+                <strong>Sam-Dim</strong><br>
+                8-9 Février
+            </div>
+        </div>
+        <div class="placeholder-content">
+            <div class="emoji">🐠</div>
+            <h3>Snorkeling • Récifs coralliens • Détente</h3>
+            <p>Hôtel : Isrotel Royal Beach • Contenu détaillé à venir</p>
+        </div>
+    </section>
+    
+    <!-- JOUR 10 - MITZPE RAMON -->
+    <section class="day-section" id="jour10">
+        <div class="day-header">
+            <div class="day-badge">
+                <span class="num">10</span>
+                <span class="label">Jour</span>
+            </div>
+            <div class="day-title">
+                <h2>Mitzpe Ramon</h2>
+                <p class="tagline">🌌 Le grand cratère du Néguev</p>
+            </div>
+            <div class="day-date">
+                <strong>Lundi</strong><br>
+                10 Février
+            </div>
+        </div>
+        <div class="placeholder-content">
+            <div class="emoji">🌌</div>
+            <h3>Cratère Ramon • Étoiles du désert</h3>
+            <p>Hôtel : Isrotel Beresheet • Contenu détaillé à venir</p>
+        </div>
+    </section>
+    
+    <!-- JOURS 11-14 - TEL AVIV RETOUR -->
+    <section class="day-section" id="jour11">
+        <div class="day-header">
+            <div class="day-badge">
+                <span class="num">11-14</span>
+                <span class="label">Jours</span>
+            </div>
+            <div class="day-title">
+                <h2>Tel Aviv</h2>
+                <p class="tagline">🏖️ Retour dans la ville blanche</p>
+            </div>
+            <div class="day-date">
+                <strong>Mar-Ven</strong><br>
+                11-14 Février
+            </div>
+        </div>
+        <div class="placeholder-content">
+            <div class="emoji">🏖️</div>
+            <h3>Bauhaus • Marchés • Plages • Vie nocturne</h3>
+            <p>Hôtel : The Setai Tel Aviv • Contenu détaillé à venir</p>
+        </div>
+    </section>
+    
+    <!-- JOUR 15 - DÉPART -->
+    <section class="day-section" id="jour15">
+        <div class="day-header">
+            <div class="day-badge">
+                <span class="num">15</span>
+                <span class="label">Jour</span>
+            </div>
+            <div class="day-title">
+                <h2>Départ</h2>
+                <p class="tagline">✈️ Vol retour vers Genève</p>
+            </div>
+            <div class="day-date">
+                <strong>Samedi</strong><br>
+                15 Février
+            </div>
+        </div>
+        <div class="placeholder-content">
+            <div class="emoji">✈️</div>
+            <h3>Shalom Israël, à bientôt !</h3>
+            <p>Transfert vers l'aéroport Ben Gourion</p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <h3>🇮🇱 Bon voyage !</h3>
+        <p>15 jours inoubliables à travers l'histoire, les paysages et les saveurs d'Israël.</p>
+        <p class="credit">Préparé avec ❤️ par Julie • Janvier 2026</p>
+    </footer>
+    
+    <script>
+        // Highlight nav on scroll
+        const sections = document.querySelectorAll('.day-section');
+        const navLinks = document.querySelectorAll('nav a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
